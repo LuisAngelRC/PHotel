@@ -1,6 +1,7 @@
 package escritorio;
 
 import baseDatos.MySqlConn;
+
 import static escritorio.Escritorio.jDesktopPane1;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -446,11 +447,11 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         if (j > 0) {
             System.out.println("Numero de registros afectados por la accion: " + j);
-            //JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO, su numero de habitacion es: " + numero);
+            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO, su numero de habitacion es: " + numero);
 
             try {
 
-                Prueba reg = new Prueba();
+                Registros reg = new Registros();
                 Escritorio.jDesktopPane1.add(reg);
 
                 Dimension tamanio = jDesktopPane1.getSize();

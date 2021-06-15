@@ -6,13 +6,15 @@ import java.sql.DriverManager;//clase
 import java.sql.SQLException;
 import java.sql.Statement;//interface
 import java.sql.ResultSet;//interface
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MySqlConn {
     public Statement stmt = null;
     public ResultSet rs= null;
     public Connection conn=null;
 
-    public MySqlConn(){
+    public MySqlConn () {
         //Conectar con mysql...
         try {
             //cargando el driver
@@ -32,7 +34,27 @@ public class MySqlConn {
             System.out.println("Class Not Found Exception: "+
                     cE.toString());
         }
+  
     }
+    
+    public Connection getConexion()
+    {
+        
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = (com.mysql.jdbc.Connection) DriverManager.getConnection("jdbc:mysql://localhost/hotel?"
+                            +"user=root&password=");
+            
+        } catch(SQLException e)
+        {
+            System.err.println(e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return conn;  
+    }
+    
+    
     public void Consult(String query){
         //information_schema
         try {

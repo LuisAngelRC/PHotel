@@ -14,13 +14,12 @@ public class LogIn extends javax.swing.JFrame {
         this.conn = conn;
         initComponents();
     }
-
+    
     public LogIn() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
