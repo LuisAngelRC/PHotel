@@ -12,7 +12,10 @@ import javax.swing.JOptionPane;
 
 public class Escritorio extends javax.swing.JFrame {
     AudioClip Musica;
+    
+    LogIn log = new LogIn();
     private int bandera = 0;
+    private int banderaLog = 0;
     
     public Escritorio() {
         initComponents();
@@ -199,18 +202,27 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 0;
         }
         
-        this.jDesktopPane1.removeAll();
-        this.repaint();
+        banderaLog = log.getBandera();
+        
+        if(banderaLog == 1){
+            this.jDesktopPane1.removeAll();
+            this.repaint();
 
-        CheckIn check = new CheckIn();
-        this.jDesktopPane1.add(check);
+            CheckIn check = new CheckIn();
+            this.jDesktopPane1.add(check);
 
-        try {
-            check.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            System.out.println("ERROR: " + ex);
+            try {
+                check.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                System.out.println("ERROR: " + ex);
+            }
+            check.show();
+        }else{
+            JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        check.show();
+        
+        
+        
     }//GEN-LAST:event_jMenuCheckInMouseClicked
 
     private void jMenuCheckOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCheckOutMouseClicked
@@ -220,18 +232,25 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 0;
         }
         
-        this.jDesktopPane1.removeAll();
-        this.repaint();
+        banderaLog = log.getBandera();
+        
+        if(banderaLog == 1){
+            this.jDesktopPane1.removeAll();
+            this.repaint();
 
-        CheckOut check = new CheckOut();
-        this.jDesktopPane1.add(check);
+            CheckOut check = new CheckOut();
+            this.jDesktopPane1.add(check);
 
-        try {
-            check.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            System.out.println("ERROR: " + ex);
+            try {
+                check.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                System.out.println("ERROR: " + ex);
+            }
+            check.show();
+        }else{
+            JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        check.show();
+        
     }//GEN-LAST:event_jMenuCheckOutMouseClicked
 
     private void jMenuOcupacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuOcupacionMouseClicked
@@ -241,18 +260,26 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 0;
         }
         
-        this.jDesktopPane1.removeAll();
-        this.repaint();
+        banderaLog = log.getBandera();
+        
+        if(banderaLog == 1){
+            this.jDesktopPane1.removeAll();
+            this.repaint();
 
-        Ocupacion ocupacion = new Ocupacion();
-        this.jDesktopPane1.add(ocupacion);
+            Ocupacion ocupacion = new Ocupacion();
+            this.jDesktopPane1.add(ocupacion);
 
-        try {
-            ocupacion.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            System.out.println("ERROR: " + ex);
+            try {
+                ocupacion.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                System.out.println("ERROR: " + ex);
+            }
+            ocupacion.show();
+        }else{
+            JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        ocupacion.show();
+        
+        
     }//GEN-LAST:event_jMenuOcupacionMouseClicked
 
     private void jMenuServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuServiciosMouseClicked
@@ -262,28 +289,37 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 0;
         }
         
-        this.jDesktopPane1.removeAll();
-        this.repaint();
+        banderaLog = log.getBandera();
+        
+        if(banderaLog == 1){
+            this.jDesktopPane1.removeAll();
+            this.repaint();
 
-        Servicios servicios = new Servicios();
-        this.jDesktopPane1.add(servicios);
+            Servicios servicios = new Servicios();
+            this.jDesktopPane1.add(servicios);
 
-        try {
-            servicios.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            System.out.println("ERROR: " + ex);
+            try {
+                servicios.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                System.out.println("ERROR: " + ex);
+            }
+            servicios.show();
+        }else{
+            JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        servicios.show();
+        
 
     }//GEN-LAST:event_jMenuServiciosMouseClicked
 
     private void jButton1LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1LoginActionPerformed
-
+        
         try {
-            LogIn log = new LogIn();
+            
             log.setLocationRelativeTo(null);
             this.setVisible(true);
             log.setVisible(true);
+            
+            System.out.println("El valor de bandera es: " + banderaLog);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }

@@ -1,0 +1,3 @@
+1.- Primero presionar team encima del proyecto, despues remote y en pull para obtener todos los cambios del proyecto
+2.- Ahora ya se podra trabajar en el proyecto, nuevamente en el proyecto commit, realizamos el comentario de los cambios realizados y PONER el autor y commiter 
+3.- Verificamos que esta checkeado, presionamos team, remote y push (seleccionando la opcion de abajo que tiene la cuenta).

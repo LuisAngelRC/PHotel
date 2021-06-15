@@ -17,7 +17,8 @@ import java.util.Set;
 public class CheckIn extends javax.swing.JInternalFrame {
 
     MySqlConn conn = new MySqlConn();
-
+    int numero = 0;
+    
     public CheckIn(MySqlConn conn) {
         this.conn = conn;
         initComponents();
@@ -281,7 +282,7 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
         String fechaIngreso = formato.format(this.jDateChooser1.getDate());
-        int dias = (int) (Math.random() * (7 - 3 + 1) + 3), numero = 0, numPiso = 0, personasExtra = 0, cuentaTotal = 0, serv = 0;
+        int dias = (int) (Math.random() * (7 - 3 + 1) + 3), numPiso = 0, personasExtra = 0, cuentaTotal = 0, serv = 0;
         int persona1 = 400, persona2 = 800;
         int costoHunn = 2800, costoItza = 3300, costoKauil = 4600;
 
@@ -449,7 +450,7 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
             try {
 
-                Registro reg = new Registro();
+                Prueba reg = new Prueba();
                 Escritorio.jDesktopPane1.add(reg);
 
                 Dimension tamanio = jDesktopPane1.getSize();
@@ -461,8 +462,13 @@ public class CheckIn extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, e);
             }
         }
+        
     }//GEN-LAST:event_jButtonIngresarActionPerformed
-
+    
+    public int getNumHab(){
+        return numero;
+    }
+    
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
         this.jTextFieldNombre.setText("");

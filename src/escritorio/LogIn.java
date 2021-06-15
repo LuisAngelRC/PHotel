@@ -8,7 +8,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class LogIn extends javax.swing.JFrame {
 
     MySqlConn conn = new MySqlConn();
-
+    int bandera = 0;
+    
     public LogIn(MySqlConn conn) {
         this.conn = conn;
         initComponents();
@@ -18,6 +19,8 @@ public class LogIn extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -132,6 +135,7 @@ public class LogIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
         this.jTextFieldNombreUsuario.setText("");
@@ -153,9 +157,13 @@ public class LogIn extends javax.swing.JFrame {
 
             String contrasenaencriptada = DigestUtils.md5Hex(contrasena);
             if (contrasenaMySql.equals(contrasenaencriptada)) {
+                bandera = 1;
+                System.out.println("Bandera en login vale: " + bandera);
                 JOptionPane.showMessageDialog(this, "Bienvenido " + this.conn.rs.getString(1) + " al sistema");
                 this.dispose();
             } else {
+                bandera = 0;
+                System.out.println("Bandera en login vale: " + bandera);
                 JOptionPane.showMessageDialog(this, "Error en la contraseña");
             }
         } catch (SQLException ex) {
@@ -186,6 +194,11 @@ public class LogIn extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
+    
+    public int getBandera() {
+        return bandera;
+    }
+    
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
