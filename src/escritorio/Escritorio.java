@@ -11,9 +11,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Escritorio extends javax.swing.JFrame {
+
     AudioClip Musica;
     private int bandera = 0;
-    
+
     public Escritorio() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -183,22 +184,22 @@ public class Escritorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSalirMouseClicked
-        
+
         if (bandera == 1) {
             Musica.stop();
             bandera = 0;
         }
-        
+
         this.dispose();
     }//GEN-LAST:event_jMenuSalirMouseClicked
 
     private void jMenuCheckInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCheckInMouseClicked
-        
+
         if (bandera == 1) {
             Musica.stop();
             bandera = 0;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
@@ -214,12 +215,12 @@ public class Escritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuCheckInMouseClicked
 
     private void jMenuCheckOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCheckOutMouseClicked
-        
+
         if (bandera == 1) {
             Musica.stop();
             bandera = 0;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
@@ -235,12 +236,12 @@ public class Escritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuCheckOutMouseClicked
 
     private void jMenuOcupacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuOcupacionMouseClicked
-        
+
         if (bandera == 1) {
             Musica.stop();
             bandera = 0;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
@@ -256,12 +257,12 @@ public class Escritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuOcupacionMouseClicked
 
     private void jMenuServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuServiciosMouseClicked
-        
+
         if (bandera == 1) {
             Musica.stop();
             bandera = 0;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
@@ -291,23 +292,23 @@ public class Escritorio extends javax.swing.JFrame {
 
     private void jMenuItemHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHabitacionesActionPerformed
         // TODO add your handling code here:
-        if(bandera == 1){
+        if (bandera == 1) {
             Musica.stop();
             Musica.play();
         }
 
-        if(bandera == 0){
+        if (bandera == 0) {
             Musica = java.applet.Applet.newAudioClip(getClass().getResource("/musica/Coro_Coral.wav"));
             Musica.play();
             bandera = 1;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
         Habitaciones hab = new Habitaciones();
         this.jDesktopPane1.add(hab); //agregamos el JInternalFrameAltas al jDesktopPanel
-        
+
         try {
             hab.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -324,7 +325,7 @@ public class Escritorio extends javax.swing.JFrame {
 
         Portada portada = new Portada();
         this.jDesktopPane1.add(portada); //agregamos el JInternalFrameAltas al jDesktopPanel
-        
+
         try {
             portada.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -335,87 +336,87 @@ public class Escritorio extends javax.swing.JFrame {
 
     private void jMenuItemHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHotelActionPerformed
         // TODO add your handling code here:
-        if(bandera == 1){
+        if (bandera == 1) {
             Musica.stop();
             Musica.play();
         }
 
-        if(bandera == 0){
+        if (bandera == 0) {
             Musica = java.applet.Applet.newAudioClip(getClass().getResource("/musica/Coro_Coral.wav"));
             Musica.play();
             bandera = 1;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
         Hotel hot = new Hotel();
         this.jDesktopPane1.add(hot); //agregamos el JInternalFrameAltas al jDesktopPanel
-        
+
         try {
             hot.setMaximum(true);
         } catch (PropertyVetoException ex) {
             java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
         }
         hot.show(); //mostrar el jDesktopPanel
-        
+
     }//GEN-LAST:event_jMenuItemHotelActionPerformed
 
     private void jMenuItemAlberGymActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlberGymActionPerformed
         // TODO add your handling code here:
-        if(bandera == 1){
+        if (bandera == 1) {
             Musica.stop();
             Musica.play();
         }
 
-        if(bandera == 0){
+        if (bandera == 0) {
             Musica = java.applet.Applet.newAudioClip(getClass().getResource("/musica/Coro_Coral.wav"));
             Musica.play();
             bandera = 1;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
         AlbercaGym alberGym = new AlbercaGym();
         this.jDesktopPane1.add(alberGym); //agregamos el JInternalFrameAltas al jDesktopPanel
-        
+
         try {
             alberGym.setMaximum(true);
         } catch (PropertyVetoException ex) {
             java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
         }
         alberGym.show(); //mostrar el jDesktopPanel
-        
+
     }//GEN-LAST:event_jMenuItemAlberGymActionPerformed
 
     private void jMenuItemRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRestaurantActionPerformed
         // TODO add your handling code here:
-        
-        if(bandera == 1){
+
+        if (bandera == 1) {
             Musica.stop();
             Musica.play();
         }
 
-        if(bandera == 0){
+        if (bandera == 0) {
             Musica = java.applet.Applet.newAudioClip(getClass().getResource("/musica/Coro_Coral.wav"));
             Musica.play();
             bandera = 1;
         }
-        
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
         Restaurantes rest = new Restaurantes();
         this.jDesktopPane1.add(rest); //agregamos el JInternalFrameAltas al jDesktopPanel
-        
+
         try {
             rest.setMaximum(true);
         } catch (PropertyVetoException ex) {
             java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
         }
         rest.show(); //mostrar el jDesktopPanel
-        
+
     }//GEN-LAST:event_jMenuItemRestaurantActionPerformed
 
     public static void main(String args[]) {
