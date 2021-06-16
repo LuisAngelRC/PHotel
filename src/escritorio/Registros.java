@@ -211,7 +211,7 @@ public class Registros extends javax.swing.JInternalFrame {
             MySqlConn conn = new MySqlConn();
             Connection con = conn.getConexion();
             
-            String query = "SELECT numHab, nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, cuentaServicios, diasHospedaje FROM huespedes ORDER BY numHab ASC" + where;
+            String query = "SELECT numHab, nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, cuentaServicios, diasHospedaje FROM huespedes " + where;
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
             
@@ -278,7 +278,6 @@ public class Registros extends javax.swing.JInternalFrame {
             int cantidadColumnas = rsMd.getColumnCount();
             
             modelo.addColumn("Nombre");
-            modelo.addColumn("Habitación");
             modelo.addColumn("Ciudad");
             modelo.addColumn("Fecha Entrada");
             modelo.addColumn("Fecha Salida");
@@ -286,6 +285,7 @@ public class Registros extends javax.swing.JInternalFrame {
             modelo.addColumn("Personas");
             modelo.addColumn("cuentaNum");
             modelo.addColumn("Piso");
+            modelo.addColumn("Habitación");
             modelo.addColumn("cuentaServ");
             modelo.addColumn("diasHospedaje");
             

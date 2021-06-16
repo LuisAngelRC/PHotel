@@ -385,10 +385,6 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
-    private void jTextFieldSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSalidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSalidaActionPerformed
-
     private void jButtonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTicketActionPerformed
         // TODO add your handling code here:
         try {
@@ -400,6 +396,10 @@ public class CheckOut extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jButtonTicketActionPerformed
+
+    private void jTextFieldSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSalidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSalidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
