@@ -67,6 +67,11 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Escribe el nombre del huésped:");
 
+        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreActionPerformed(evt);
+            }
+        });
         jTextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNombreKeyTyped(evt);
@@ -75,6 +80,11 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Escribe la ciudad de origen del huésped:");
 
+        jTextFieldCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCiudadActionPerformed(evt);
+            }
+        });
         jTextFieldCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldCiudadKeyTyped(evt);
@@ -85,6 +95,11 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Escribe el numero de personas que la ocupan:");
 
+        jTextFieldNumPersonas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNumPersonasActionPerformed(evt);
+            }
+        });
         jTextFieldNumPersonas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNumPersonasKeyTyped(evt);
@@ -302,8 +317,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         aux.setTime(this.jDateChooser1.getDate());
         aux.add(Calendar.DATE, dias);
-
-        System.out.println(Formato.format(aux.getTime()));
 
         int numP = Integer.parseInt(numPersonas);
 
@@ -550,6 +563,18 @@ public class CheckIn extends javax.swing.JInternalFrame {
     private void jRadioButton1PerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1PerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1PerActionPerformed
+
+    private void jTextFieldNumPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumPersonasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNumPersonasActionPerformed
+
+    private void jTextFieldCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCiudadActionPerformed
+
+    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

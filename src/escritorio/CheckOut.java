@@ -1,34 +1,24 @@
 package escritorio;
 
-import baseDatos.MySqlConn;
 import com.mysql.jdbc.Statement;
 import baseDatos.MySqlConn;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
-//import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import java.awt.Desktop;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.Date;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class CheckOut extends javax.swing.JInternalFrame {
@@ -36,6 +26,7 @@ public class CheckOut extends javax.swing.JInternalFrame {
     String rutaLogo = "src\\imagenes\\ayaye_grande.png";
     String rutaFirma = "src\\imagenes\\firma.png";
     Font tipoLetra = new Font(Font.FontFamily.TIMES_ROMAN, 10);//tipoletra
+    int ingHotel = 0;
 
     MySqlConn conn = new MySqlConn();
 
@@ -80,10 +71,13 @@ public class CheckOut extends javax.swing.JInternalFrame {
             parrafo2.setAlignment(1);
             documento.add(parrafo2);
 
+            ResultSet resultados = null;
             PreparedStatement ps = null;
             ResultSet rs = null;
+            Statement estado = null;
             MySqlConn conn = new MySqlConn();
             Connection con = conn.getConexion();
+            int auxIng = 0;
 
             String campo = this.jTextFieldBaja.getText().trim();
 
@@ -148,6 +142,25 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
             String costo = costoHab + "";
 
+            String query2 = "SELECT ingresosHotel FROM ingresos";
+            ps = con.prepareStatement(query2);
+            rs = ps.executeQuery(query2);
+            rs.first();
+            ingHotel = rs.getInt(1);
+            ingHotel += aux3;
+            String query3 = "UPDATE ingresos SET ingresosHotel = " + "'" + ingHotel + "'";
+
+            try {
+
+                conn.Update(query3);
+
+            } catch (Exception ex) {
+
+                System.err.println(ex);
+                JOptionPane.showMessageDialog(this, "No entro a la base");
+            }
+
+            //String query2 = "INSERT INTO ingresos (ingresosHotel) VALUES (" + "'" + aux3 +"'";
             documento.add(new Paragraph("\n" + "Fecha del día de hoy: " + fecha, tipoLetra));
             documento.add(new Paragraph("\n" + "Nombre del huésped: " + nombreH, tipoLetra));
             documento.add(new Paragraph("\n" + "Ciudad: " + ciudad, tipoLetra));
@@ -379,11 +392,11 @@ public class CheckOut extends javax.swing.JInternalFrame {
     private void jButtonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTicketActionPerformed
         // TODO add your handling code here:
         try {
-            generar("Hotel");
+            generar("ReciboHotel");
         } catch (FileNotFoundException | DocumentException ex) {
             System.out.println("ERROR CON EL ARCHIVO");
         } catch (SQLException ex) {
-            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "No se pudo encontrar la habitacion");
         }
 
     }//GEN-LAST:event_jButtonTicketActionPerformed

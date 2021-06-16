@@ -1,6 +1,9 @@
 package escritorio;
 
 import baseDatos.MySqlConn;
+import static escritorio.Escritorio.jDesktopPane1;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
@@ -12,10 +15,15 @@ import javax.swing.JOptionPane;
 public class Ocupacion extends javax.swing.JInternalFrame {
 
     MySqlConn conn = new MySqlConn();
+    int Hunn1 = 8, Hunn2 = 5, hunn = 13;
+    int Itza1 = 4, Itza2 = 6, itza = 10;
+    int Kauil1 = 3, Kauil2 = 4, kauil = 7, totalHab = 30;
+    boolean bandera = false;
 
     public Ocupacion(MySqlConn conn) {
         this.conn = conn;
         initComponents();
+        this.jLabelHab.setEnabled(false);
     }
 
     public Ocupacion() {
@@ -28,6 +36,34 @@ public class Ocupacion extends javax.swing.JInternalFrame {
         }
                 */
         initComponents();
+        this.jLabelHab.setEnabled(false);
+    }
+    
+    public void paint(Graphics g){
+        super.paint(g);
+        if(bandera == true){
+            
+            int total_votos = hunn + itza + kauil;
+            
+            int grados_rojo = hunn * 360 / total_votos;
+            int grados_verde = itza * 360 / total_votos;
+            int grados_azul = kauil * 360 / total_votos;
+            
+            g.setColor(new Color(255, 0, 0));
+            g.fillArc(25, 80, 200, 200, 0, grados_rojo);
+            g.fillRect(250, 120, 20, 20);
+            g.drawString("Habitaciones Hunn", 275, 135);
+            
+            g.setColor(new Color(0, 130, 0));
+            g.fillArc(25, 80, 200, 200, grados_rojo, grados_verde);
+            g.fillRect(250, 150, 20, 20);
+            g.drawString("Habitaciones Itza", 275, 165);
+            
+            g.setColor(new Color(0, 0, 255));
+            g.fillArc(25, 80, 200, 200, grados_rojo + grados_verde, grados_azul);
+            g.fillRect(250, 180, 20, 20);
+            g.drawString("Habitaciones Kauil", 275, 195);
+        }
     }
 
     //rs.getFetchSize();
@@ -46,6 +82,9 @@ public class Ocupacion extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButtonMostrar = new javax.swing.JButton();
+        jButtonCostos = new javax.swing.JButton();
+        jLabelHab = new javax.swing.JLabel();
+        jButtonBuscar = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -53,6 +92,11 @@ public class Ocupacion extends javax.swing.JInternalFrame {
         setTitle("Ocupación");
 
         jButtonGraficar.setText("Graficar");
+        jButtonGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGraficarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -65,7 +109,9 @@ public class Ocupacion extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,39 +127,66 @@ public class Ocupacion extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonCostos.setText("Costos");
+        jButtonCostos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCostosActionPerformed(evt);
+            }
+        });
+
+        jLabelHab.setText("Habitaciones");
+
+        jButtonBuscar.setText("Buscar disponibilidad");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(228, 228, 228))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(395, 395, 395)
-                        .addComponent(jButtonGraficar)
-                        .addGap(91, 91, 91)
-                        .addComponent(jButtonMostrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE)))
+                .addGap(324, 324, 324)
+                .addComponent(jButtonGraficar)
+                .addGap(50, 50, 50)
+                .addComponent(jButtonMostrar)
+                .addGap(47, 47, 47)
+                .addComponent(jButtonCostos)
+                .addGap(47, 47, 47)
+                .addComponent(jButtonBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jLabelHab)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGraficar)
-                    .addComponent(jButtonMostrar))
-                .addGap(18, 18, 18))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelHab)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonGraficar)
+                            .addComponent(jButtonMostrar)
+                            .addComponent(jButtonCostos)
+                            .addComponent(jButtonBuscar))
+                        .addGap(45, 45, 45))))
         );
 
         pack();
@@ -125,6 +198,7 @@ public class Ocupacion extends javax.swing.JInternalFrame {
 
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         // TODO add your handling code here:
+        
         /*
         PreparedStatement ps = null;
             ResultSet rs = null;
@@ -137,98 +211,76 @@ public class Ocupacion extends javax.swing.JInternalFrame {
             ps = con.prepareStatement(query);
             rs = ps.executeQuery(query);
             
-            rs.first();*/
+            rs.first();
+        */
+        this.jTextArea1.setText("");
+        this.jTextArea1.append("\nTotal de habitaciones: " + totalHab);
+        this.jTextArea1.append("\nTotal de habitaciones Hunn: " + hunn);
+        this.jTextArea1.append("\nTotal de habitaciones Itza: " + itza);
+        this.jTextArea1.append("\nTotal de habitaciones Kauil: " + kauil);
         
+        this.jTextArea1.append("\n\nPISO 1\n");
+        this.jTextArea1.append("\nHunn: " + Hunn1 + " habitaciones");
+        this.jTextArea1.append("\nItza: " + Itza1 + " habitaciones");
+        this.jTextArea1.append("\nKauil: " + Kauil1 + " habitaciones");
         
-        
-        
+        this.jTextArea1.append("\n\nPISO 2\n");
+        this.jTextArea1.append("\nHunn: " + Hunn2 + " habitaciones");
+        this.jTextArea1.append("\nItza: " + Itza2 + " habitaciones");
+        this.jTextArea1.append("\nKauil: " + Kauil2 + " habitaciones");
+
     }//GEN-LAST:event_jButtonMostrarActionPerformed
 
-    public static void llenado() {
-        int size = 30;
-        char salaCine[][] = new char[size][size];
-        salaCine = create(size);
-        boolean ban = true; //para ejecutar programa
-        do {
-            int opcion = (int) Integer.parseInt(JOptionPane.showInputDialog("\nMenu:\n"
-                    + "1.- Ver estado de la Sala.\n"
-                    + "2.- Asignar lugar disponible\n"
-                    + "3.- Seleccionar lugar especifico\n"
-                    + "Cualquier otra.- Salir del Sistema"));
+    private void jButtonCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCostosActionPerformed
+        // TODO add your handling code here:
+        this.jTextArea1.setText("");
+        
+        this.jTextArea1.append("\nCOSTOS\n");
+        this.jTextArea1.append("\nHabitación tipo Hunn: " + 2800);
+        this.jTextArea1.append("\nHabitación tipo Itza: " + 3300);
+        this.jTextArea1.append("\nHabitación tipo Kauil: " + 4600);
+        
+        this.jTextArea1.append("\n\nCOSTOS EXTRA\n");
+        this.jTextArea1.append("\n1 persona extra: " + 400);
+        this.jTextArea1.append("\n2 personas extra: " + 800);
+        
+    }//GEN-LAST:event_jButtonCostosActionPerformed
 
-            switch (opcion) {
-                case 1:
-                    display(salaCine);
-                    break;
-                case 2:
-                    salaCine = asignarLugar(salaCine);
-                    break;
-                case 3:
-                    salaCine = escogerLugar(salaCine);
-                    break;
-                default:
-                    ban = false;
-            }
-        } while (ban);
-    }
+    private void jButtonGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGraficarActionPerformed
+        // TODO add your handling code here:
+        bandera = true;
+        repaint();
+        
+        this.jLabelHab.setEnabled(true);
+        
+    }//GEN-LAST:event_jButtonGraficarActionPerformed
 
-    public static char[][] create(int size) {
-        char matriz[][] = new char[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                matriz[i][j] = 'v';
-            }
-        }
-        return matriz;
-    }
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        
+        try {
 
-    public static void display(char mat[][]) {
-        String cad = "";
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[i].length; j++) {
-                cad += mat[i][j] + " ";
-            }
-            cad += "\n";
-        }
-        JOptionPane.showMessageDialog(null, cad);
-    }
+                Registros reg = new Registros();
+                Escritorio.jDesktopPane1.add(reg);
 
-    public static char[][] asignarLugar(char mat[][]) {
-        char matriz[][] = mat;
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[i].length; j++) {
-                if (matriz[i][j] == 'v') {
-                    JOptionPane.showMessageDialog(null, "Lugar asignado en la fila " + (i + 1)
-                            + " y columna " + (j + 1));
-                    matriz[i][j] = 'x';
-                    return matriz;
-                } else {
-                    continue;
-                }
-            }
-        }
-        return matriz;
-    }
+                Dimension tamanio = jDesktopPane1.getSize();
+                Dimension tamFrame = reg.getSize();
+                reg.setLocation((tamanio.width - tamFrame.width) / 2, (tamanio.height - tamFrame.height) / 2);
+                reg.show();
 
-    public static char[][] escogerLugar(char mat[][]) {
-        char matriz[][] = mat;
-        do {
-            int fila = (int) Integer.parseInt(JOptionPane.showInputDialog("Selecciona la fila:"));
-            int columna = (int) Integer.parseInt(JOptionPane.showInputDialog("Selecciona la Columna:"));
-            if (matriz[fila - 1][columna - 1] == 'x') {
-                JOptionPane.showMessageDialog(null, "Vuelve a seleccionar, ese lugar ya se encuentra ocupado");
-            } else {
-                JOptionPane.showMessageDialog(null, "Lugar asignado a la fila " + fila + " y columna " + columna);
-                matriz[fila - 1][columna - 1] = 'x';
-                break;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e);
             }
-        } while (1 == 1);
-        return matriz;
-    }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonCostos;
     private javax.swing.JButton jButtonGraficar;
     private javax.swing.JButton jButtonMostrar;
+    private javax.swing.JLabel jLabelHab;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
