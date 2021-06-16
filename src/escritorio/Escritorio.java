@@ -217,11 +217,11 @@ public class Escritorio extends javax.swing.JFrame {
         banderaLog = log.getBandera();
 
         if (banderaLog == 1) {
-            this.jDesktopPane1.removeAll();
+            Escritorio.jDesktopPane1.removeAll();
             this.repaint();
 
             CheckIn check = new CheckIn();
-            this.jDesktopPane1.add(check);
+            Escritorio.jDesktopPane1.add(check);
 
             try {
                 check.setMaximum(true);
@@ -245,11 +245,11 @@ public class Escritorio extends javax.swing.JFrame {
         banderaLog = log.getBandera();
 
         if (banderaLog == 1) {
-            this.jDesktopPane1.removeAll();
+            Escritorio.jDesktopPane1.removeAll();
             this.repaint();
 
             CheckOut check = new CheckOut();
-            this.jDesktopPane1.add(check);
+            Escritorio.jDesktopPane1.add(check);
 
             try {
                 check.setMaximum(true);
@@ -273,11 +273,11 @@ public class Escritorio extends javax.swing.JFrame {
         banderaLog = log.getBandera();
 
         if (banderaLog == 1) {
-            this.jDesktopPane1.removeAll();
+            Escritorio.jDesktopPane1.removeAll();
             this.repaint();
 
             Ocupacion ocupacion = new Ocupacion();
-            this.jDesktopPane1.add(ocupacion);
+            Escritorio.jDesktopPane1.add(ocupacion);
 
             try {
                 ocupacion.setMaximum(true);
@@ -301,14 +301,14 @@ public class Escritorio extends javax.swing.JFrame {
         banderaLog = log.getBandera();
 
         if (banderaLog == 1) {
-            this.jDesktopPane1.removeAll();
+            Escritorio.jDesktopPane1.removeAll();
             this.repaint();
 
-            this.jDesktopPane1.removeAll();
+            Escritorio.jDesktopPane1.removeAll();
             this.repaint();
 
             Servicios servicios = new Servicios();
-            this.jDesktopPane1.add(servicios);
+            Escritorio.jDesktopPane1.add(servicios);
 
             try {
                 servicios.setMaximum(true);
@@ -348,7 +348,7 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 1;
         }
 
-        this.jDesktopPane1.removeAll();
+        Escritorio.jDesktopPane1.removeAll();
         this.repaint();
 
         Habitaciones hab = new Habitaciones();
@@ -388,7 +388,7 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 1;
         }
 
-        this.jDesktopPane1.removeAll();
+        Escritorio.jDesktopPane1.removeAll();
         this.repaint();
 
         Hotel hot = new Hotel();
@@ -416,7 +416,7 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 1;
         }
 
-        this.jDesktopPane1.removeAll();
+        Escritorio.jDesktopPane1.removeAll();
         this.repaint();
 
         AlbercaGym alberGym = new AlbercaGym();
@@ -444,7 +444,7 @@ public class Escritorio extends javax.swing.JFrame {
             bandera = 1;
         }
 
-        this.jDesktopPane1.removeAll();
+        Escritorio.jDesktopPane1.removeAll();
         this.repaint();
 
         Restaurantes rest = new Restaurantes();

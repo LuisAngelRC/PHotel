@@ -154,7 +154,6 @@ public class CheckOut extends javax.swing.JInternalFrame {
             try {
                 conn.Update(query3);
             } catch (Exception ex) {
-                System.err.println(ex);
                 JOptionPane.showMessageDialog(this, "No entro a la base");
             }
 
