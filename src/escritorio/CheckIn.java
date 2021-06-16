@@ -7,9 +7,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import java.awt.Graphics;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -19,7 +17,10 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
     MySqlConn conn = new MySqlConn();
     int numero = 0;
-    
+    int Hunn1 = 8, Hunn2 = 5;
+    int Itza1 = 4, Itza2 = 6;
+    int Kauil1 = 3, Kauil2 = 4, totalHab = 30;
+
     public CheckIn(MySqlConn conn) {
         this.conn = conn;
         initComponents();
@@ -185,12 +186,13 @@ public class CheckIn extends javax.swing.JInternalFrame {
                                 .addGap(200, 200, 200)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(52, Short.MAX_VALUE))))))
+                                .addContainerGap(52, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +307,27 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         int numP = Integer.parseInt(numPersonas);
 
-        //System.out.println(tipoHab);
+        Set<Integer> generados = new HashSet<>();
+        for (int i = 1; i <= 30; i++) {
+            int aleatorio = -1;
+            boolean generado = false;
+            while (!generado) {
+                int numHab = (int) (Math.random() * (30 - 1 + 1) + 1);
+                if (!generados.contains(numHab)) {
+                    generados.add(numHab);
+                    aleatorio = numHab;
+                    generado = true;
+                }
+            }
+            numero = aleatorio;
+        }
+
+        if (numero <= 15) {
+            numPiso = 1;
+        } else {
+            numPiso = 2;
+        }
+
         if ("Hunn".equals(tipoHab)) {
 
             cuentaTotal += costoHunn;
@@ -342,11 +364,34 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
             }
 
+            if (numPiso == 1 && Hunn1 != 0) {
+                Hunn1--;
+            } else if (Hunn1 == 0) {
+                JOptionPane.showMessageDialog(this, "SIN HABITACIONES HUNN EN EL PISO 1");
+                return;
+            }
+
+            if (numPiso == 2 && Hunn2 != 0) {
+                Hunn2--;
+            } else if (Hunn2 == 0) {
+                JOptionPane.showMessageDialog(this, "SIN HABITACIONES HUNN EN EL PISO 2");
+                return;
+            }
+
+            if (totalHab == 0) {
+                JOptionPane.showMessageDialog(this, "HOTEL LLENO");
+            } else {
+                totalHab--;
+            }
+
         }
+
+        System.out.println(Hunn1);
+        System.out.println(Hunn2);
 
         if ("Itza".equals(tipoHab)) {
 
-            cuentaTotal += costoHunn;
+            cuentaTotal += costoItza;
 
             if (numP > 4) {
                 JOptionPane.showMessageDialog(this, "LA CANTIDAD DE PERSONAS SELECCIONADA NO ES CORRECTA");
@@ -379,11 +424,34 @@ public class CheckIn extends javax.swing.JInternalFrame {
                 }
 
             }
+
+            if (numPiso == 1 && Itza1 != 0) {
+                Itza1--;
+            } else if (Itza1 == 0) {
+                JOptionPane.showMessageDialog(this, "SIN HABITACIONES ITZA EN EL PISO 1");
+                return;
+            }
+
+            if (numPiso == 2 && Itza2 != 0) {
+                Itza2--;
+            } else if (Itza2 == 0) {
+                JOptionPane.showMessageDialog(this, "SIN HABITACIONES ITZA EN EL PISO 2");
+                return;
+            }
+
+            if (totalHab == 0) {
+                JOptionPane.showMessageDialog(this, "HOTEL LLENO");
+            } else {
+                totalHab--;
+            }
         }
+
+        System.out.println(Itza1);
+        System.out.println(Itza2);
 
         if ("Kauil".equals(tipoHab)) {
 
-            cuentaTotal += costoHunn;
+            cuentaTotal += costoKauil;
 
             if (numP > 5) {
                 JOptionPane.showMessageDialog(this, "LA CANTIDAD DE PERSONAS SELECCIONADA NO ES CORRECTA");
@@ -396,7 +464,7 @@ public class CheckIn extends javax.swing.JInternalFrame {
                     return;
                 }
 
-                if (numP == 3) {
+                if (numP == 4) {
                     if (this.jRadioButton1Per.isSelected()) {
                         cuentaTotal += persona1;
                         JOptionPane.showMessageDialog(this, "SE HA CARGADO 1 PERSONA EXTRA");
@@ -416,31 +484,33 @@ public class CheckIn extends javax.swing.JInternalFrame {
                 }
 
             }
-        }
 
-        Set<Integer> generados = new HashSet<>();
-        for (int i = 1; i <= 30; i++) {
-            int aleatorio = -1;
-            boolean generado = false;
-            while (!generado) {
-                int numHab = (int) (Math.random() * (30 - 1 + 1) + 1);
-                if (!generados.contains(numHab)) {
-                    generados.add(numHab);
-                    aleatorio = numHab;
-                    generado = true;
-                }
+            if (numPiso == 1 && Kauil1 != 0) {
+                Kauil1--;
+            } else if (Kauil1 == 0) {
+                JOptionPane.showMessageDialog(this, "SIN HABITACIONES KAUIL EN EL PISO 1");
+                return;
             }
-            numero = aleatorio;
+
+            if (numPiso == 2 && Kauil2 != 0) {
+                Kauil2--;
+            } else if (Kauil2 == 0) {
+                JOptionPane.showMessageDialog(this, "SIN HABITACIONES KAUIL EN EL PISO 2");
+                return;
+            }
+
+            if (totalHab == 0) {
+                JOptionPane.showMessageDialog(this, "HOTEL LLENO");
+            } else {
+                totalHab--;
+            }
         }
 
-        if (numero <= 15) {
-            numPiso = 1;
-        } else {
-            numPiso = 2;
-        }
+        System.out.println(Kauil1);
+        System.out.println(Kauil2);
 
-        String parte1 = "INSERT INTO huespedes (nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, numHab, cuentaServicios, diasHospedaje) VALUES (";
-        String parte2 = "'" + nombre + "','" + ciudad + "','" + formato.format(this.jDateChooser1.getDate()) + "','" + formato.format(aux.getTime()) + "','" + tipoHab + "','" + numPersonas 
+        String parte1 = "INSERT IGNORE INTO huespedes (nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, numHab, cuentaServicios, diasHospedaje) VALUES (";
+        String parte2 = "'" + nombre + "','" + ciudad + "','" + formato.format(this.jDateChooser1.getDate()) + "','" + formato.format(aux.getTime()) + "','" + tipoHab + "','" + numPersonas
                 + "','" + cuentaTotal + "','" + numPiso + "','" + numero + "','" + serv + "','" + dias + "')";
         String query = parte1 + parte2;
         int j = this.conn.Update(query); //Ejecuta accion de alta en la base de datos
@@ -463,13 +533,13 @@ public class CheckIn extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, e);
             }
         }
-        
+
     }//GEN-LAST:event_jButtonIngresarActionPerformed
-    
-    public int getNumHab(){
+
+    public int getNumHab() {
         return numero;
     }
-    
+
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
         this.jTextFieldNombre.setText("");

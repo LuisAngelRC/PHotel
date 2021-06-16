@@ -66,7 +66,7 @@ public class CheckOut extends javax.swing.JInternalFrame {
                 logo.setAlignment(1);
                 //image.setAbsolutePosition(150, 100);//coloca imagen en la posicion
             } catch (Exception e) {
-                System.out.println("LA IMAGEN NO SE CARGO CORRECTAMENTE");
+                System.out.println("LA IMAGEN NO SE CARGÓ CORRECTAMENTE");
             }
             documento.add(logo);//agrega la imagen al documento
 
@@ -74,7 +74,7 @@ public class CheckOut extends javax.swing.JInternalFrame {
             parrafo.setFont(tipoLetra);
             parrafo.setAlignment(1);
             documento.add(parrafo);
-            
+
             Paragraph parrafo2 = new Paragraph("\n" + "*** RECIBO DEL HOTEL ***");
             parrafo2.setFont(tipoLetra);
             parrafo2.setAlignment(1);
@@ -90,58 +90,64 @@ public class CheckOut extends javax.swing.JInternalFrame {
             String query = "SELECT nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, numHab, cuentaServicios, diasHospedaje FROM huespedes WHERE numHab = " + "'" + campo + "'";
             ps = con.prepareStatement(query);
             rs = ps.executeQuery(query);
-            
+
             rs.first();
-            
+
             SimpleDateFormat Formato = new SimpleDateFormat("dd-MM-YYYY");
             Calendar aux = Calendar.getInstance();
-            
+
             String fecha = Formato.format(aux.getTime());
-            
+
             String nombreH = rs.getString(1);
-            
+
             String ciudad = rs.getString(2);
-            
+
             Date fechaI = rs.getDate(3);
-            
+
             Date fechaS = rs.getDate(4);
-            
+
             String tipoHab = rs.getString(5);
-            
+
             int numPersonas = rs.getInt(6);
-            String personas = numPersonas+"";
-            
+            String personas = numPersonas + "";
+
             int pagosinCargos = rs.getInt(7);
-            String pagosNormales = pagosinCargos+"";
-            
+            String pagosNormales = pagosinCargos + "";
+
             int numP = rs.getInt(8);
-            String numPiso = numP +"";
-            
+            String numPiso = numP + "";
+
             int numH = rs.getInt(9);
             String numHab = numH + "";
-            
+
             int pagoconCargos = rs.getInt(10);
-            String pagoCargos = pagoconCargos+"";
-            
+            String pagoCargos = pagoconCargos + "";
+
             int dia = rs.getInt(11);
-            String dias = dia+"";
-            
+            String dias = dia + "";
+
             int costoHab = 0;
-  
+
             if ("Hunn".equals(tipoHab)) {
                 costoHab = 2800;
             }
-            
+
             if ("Itza".equals(tipoHab)) {
                 costoHab = 3300;
             }
-            
+
             if ("Kauil".equals(tipoHab)) {
                 costoHab = 4600;
             }
-            
-            String costo = costoHab+"";
- 
+
+            int aux2 = pagosinCargos * dia;
+            String pagoDias = aux2 + "";
+
+            int aux3 = aux2 + pagoconCargos;
+            String pagoTotal = aux3 + "";
+
+            String costo = costoHab + "";
+
             documento.add(new Paragraph("\n" + "Fecha del día de hoy: " + fecha, tipoLetra));
             documento.add(new Paragraph("\n" + "Nombre del huésped: " + nombreH, tipoLetra));
             documento.add(new Paragraph("\n" + "Ciudad: " + ciudad, tipoLetra));
@@ -153,10 +159,9 @@ public class CheckOut extends javax.swing.JInternalFrame {
             documento.add(new Paragraph("\n" + "Numero de habitación: " + numHab, tipoLetra));
             documento.add(new Paragraph("\n" + "Costo base de la habitación: " + costo, tipoLetra));
             documento.add(new Paragraph("\n" + "Días de estancia en el hotel: " + dias, tipoLetra));
-            documento.add(new Paragraph("\n" + "Total a pagar sin cargos extra: " + pagosNormales, tipoLetra));
-            documento.add(new Paragraph("\n" + "Total a pagar con cargos extra: " + pagoCargos, tipoLetra));
-            
-            
+            documento.add(new Paragraph("\n" + "Total a pagar sin cargos extra: " + pagoDias, tipoLetra));
+            documento.add(new Paragraph("\n" + "Total a pagar con cargos extra: " + pagoTotal, tipoLetra));
+
             com.itextpdf.text.Image firma = null;
             try {
                 firma = com.itextpdf.text.Image.getInstance(rutaFirma);//carga imagen
@@ -172,13 +177,11 @@ public class CheckOut extends javax.swing.JInternalFrame {
             parrafoFirma.setAlignment(1);
             parrafoFirma.setFont(tipoLetra);
             documento.add(parrafoFirma);
-            
+
             Paragraph parrafo3 = new Paragraph("\n***GRACIAS POR VISITAR AL HOTEL AYAYE, BUEN DIA!!!***");
             parrafo3.setFont(tipoLetra);
             parrafo3.setAlignment(1);
             documento.add(parrafo3);
-            
-
 
             documento.close();
             JOptionPane.showMessageDialog(null, "ARCHIVO PDF CREADO CORRECTAMENTE", "Informacion", 1);
