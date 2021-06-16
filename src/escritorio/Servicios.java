@@ -189,7 +189,9 @@ public class Servicios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private int TotalSrev() {
-
+        
+        cuentaTot = 0;
+        
         if (this.jCheckBoxRoom.isSelected()) {
             cuentaTot += (int) (Math.random() * (2000 - 500 + 1) + 500);
         }
