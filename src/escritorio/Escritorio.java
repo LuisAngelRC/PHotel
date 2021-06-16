@@ -365,28 +365,13 @@ public class Escritorio extends javax.swing.JFrame {
 
     private void jButtonPortadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPortadaActionPerformed
 
-        
         Portada reg = new Portada();
-                Escritorio.jDesktopPane1.add(reg);
+        Escritorio.jDesktopPane1.add(reg);
 
-                Dimension tamanio = jDesktopPane1.getSize();
-                Dimension tamFrame = reg.getSize();
-                reg.setLocation((tamanio.width - tamFrame.width) / 2, (tamanio.height - tamFrame.height) / 2);
-                reg.show();
-        /*
-        this.jDesktopPane1.removeAll();
-        this.repaint();
-
-        Portada portada = new Portada();
-        this.jDesktopPane1.add(portada);
-
-        try {
-            portada.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR");
-        }
-        portada.show();
-                */
+        Dimension tamanio = jDesktopPane1.getSize();
+        Dimension tamFrame = reg.getSize();
+        reg.setLocation((tamanio.width - tamFrame.width) / 2, (tamanio.height - tamFrame.height) / 2);
+        reg.show();
 
     }//GEN-LAST:event_jButtonPortadaActionPerformed
 
