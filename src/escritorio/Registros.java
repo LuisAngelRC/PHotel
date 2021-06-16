@@ -74,6 +74,12 @@ public class Registros extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextFieldNumHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNumHabActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Escribe el número de habitación para verificar la información:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,7 +135,7 @@ public class Registros extends javax.swing.JInternalFrame {
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
         // TODO add your handling code here:
         
-        String campo = this.jTextFieldNumHab.getText();
+        String campo = this.jTextFieldNumHab.getText().trim();
         String where = "";
         
         if (!campo.isEmpty()) {
@@ -180,6 +186,10 @@ public class Registros extends javax.swing.JInternalFrame {
             System.err.println(ex.toString());
         } 
     }//GEN-LAST:event_jButtonCargarActionPerformed
+
+    private void jTextFieldNumHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumHabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNumHabActionPerformed
     
  
 

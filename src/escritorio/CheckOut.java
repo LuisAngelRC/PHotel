@@ -15,7 +15,27 @@ import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Font;
+//import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class CheckOut extends javax.swing.JInternalFrame {
+
+    String rutaLogo = "src\\imagenes\\ayaye_grande.png";
+    String rutaFirma = "src\\imagenes\\firma.png";
+    Font tipoLetra = new Font(Font.FontFamily.TIMES_ROMAN, 10);//tipoletra
 
     MySqlConn conn = new MySqlConn();
 
@@ -26,6 +46,145 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
     public CheckOut() {
         initComponents();
+    }
+
+    public void generar(String nombre) throws FileNotFoundException, DocumentException, SQLException {
+        if (!(this.jTextFieldBaja.getText().isEmpty())) {
+
+            FileOutputStream archivo = new FileOutputStream(nombre + ".pdf");
+            Document documento = new Document();
+            documento.setMargins(60, 60, 0, 50); // (izq, der, arriba, abajo)
+
+            PdfWriter.getInstance(documento, archivo);
+            documento.open();
+
+            com.itextpdf.text.Image logo = null;
+
+            try {
+                logo = com.itextpdf.text.Image.getInstance(rutaLogo);//carga imagen
+                logo.scaleAbsolute(160, 160);//cambia tamaño
+                logo.setAlignment(1);
+                //image.setAbsolutePosition(150, 100);//coloca imagen en la posicion
+            } catch (Exception e) {
+                System.out.println("LA IMAGEN NO SE CARGO CORRECTAMENTE");
+            }
+            documento.add(logo);//agrega la imagen al documento
+
+            Paragraph parrafo = new Paragraph("Ubicación: Tulum, Quintana Roo, Calle Grulla Sin Numero, Esq. Con Av, Calle Simón Bolivar KM 2.2, 77796 Francisco Uh May, Q.R.");
+            parrafo.setFont(tipoLetra);
+            parrafo.setAlignment(1);
+            documento.add(parrafo);
+            
+            Paragraph parrafo2 = new Paragraph("\n" + "*** RECIBO DEL HOTEL ***");
+            parrafo2.setFont(tipoLetra);
+            parrafo2.setAlignment(1);
+            documento.add(parrafo2);
+
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            MySqlConn conn = new MySqlConn();
+            Connection con = conn.getConexion();
+
+            String campo = this.jTextFieldBaja.getText().trim();
+
+            String query = "SELECT nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, numHab, cuentaServicios, diasHospedaje FROM huespedes WHERE numHab = " + "'" + campo + "'";
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery(query);
+            
+            rs.first();
+            
+            SimpleDateFormat Formato = new SimpleDateFormat("dd-MM-YYYY");
+            Calendar aux = Calendar.getInstance();
+            
+            String fecha = Formato.format(aux.getTime());
+            
+            String nombreH = rs.getString(1);
+            
+            String ciudad = rs.getString(2);
+            
+            Date fechaI = rs.getDate(3);
+            
+            Date fechaS = rs.getDate(4);
+            
+            String tipoHab = rs.getString(5);
+            
+            int numPersonas = rs.getInt(6);
+            String personas = numPersonas+"";
+            
+            int pagosinCargos = rs.getInt(7);
+            String pagosNormales = pagosinCargos+"";
+            
+            int numP = rs.getInt(8);
+            String numPiso = numP +"";
+            
+            int numH = rs.getInt(9);
+            String numHab = numH + "";
+            
+            int pagoconCargos = rs.getInt(10);
+            String pagoCargos = pagoconCargos+"";
+            
+            int dia = rs.getInt(11);
+            String dias = dia+"";
+            
+            int costoHab = 0;
+  
+            if ("Hunn".equals(tipoHab)) {
+                costoHab = 2800;
+            }
+            
+            if ("Itza".equals(tipoHab)) {
+                costoHab = 3300;
+            }
+            
+            if ("Kauil".equals(tipoHab)) {
+                costoHab = 4600;
+            }
+            
+            String costo = costoHab+"";
+ 
+            documento.add(new Paragraph("\n" + "Fecha del día de hoy: " + fecha, tipoLetra));
+            documento.add(new Paragraph("\n" + "Nombre del huésped: " + nombreH, tipoLetra));
+            documento.add(new Paragraph("\n" + "Ciudad: " + ciudad, tipoLetra));
+            documento.add(new Paragraph("\n" + "Fecha de ingreso: " + fechaI, tipoLetra));
+            documento.add(new Paragraph("\n" + "Fecha de salida: " + fechaS, tipoLetra));
+            documento.add(new Paragraph("\n" + "Tipo de habitación: " + tipoHab, tipoLetra));
+            documento.add(new Paragraph("\n" + "Número de personas: " + personas, tipoLetra));
+            documento.add(new Paragraph("\n" + "Número de piso: " + numPiso, tipoLetra));
+            documento.add(new Paragraph("\n" + "Numero de habitación: " + numHab, tipoLetra));
+            documento.add(new Paragraph("\n" + "Costo base de la habitación: " + costo, tipoLetra));
+            documento.add(new Paragraph("\n" + "Días de estancia en el hotel: " + dias, tipoLetra));
+            documento.add(new Paragraph("\n" + "Total a pagar sin cargos extra: " + pagosNormales, tipoLetra));
+            documento.add(new Paragraph("\n" + "Total a pagar con cargos extra: " + pagoCargos, tipoLetra));
+            
+            
+            com.itextpdf.text.Image firma = null;
+            try {
+                firma = com.itextpdf.text.Image.getInstance(rutaFirma);//carga imagen
+                firma.scaleAbsolute(135, 135);//cambia tamaño
+                //firma.setAlignment(4);
+                firma.setAbsolutePosition(230, 100);//coloca imagen en la posicion
+            } catch (Exception e) {
+                System.out.println("LA IMAGEN NO SE CARGÓ CORRECTAMENTE");
+            }
+            documento.add(firma);//agrega la imagen al documento
+
+            Paragraph parrafoFirma = new Paragraph("\n\n\n\n\n\n\n\n\nFIRMA DEL GERENTE");
+            parrafoFirma.setAlignment(1);
+            parrafoFirma.setFont(tipoLetra);
+            documento.add(parrafoFirma);
+            
+            Paragraph parrafo3 = new Paragraph("\n***GRACIAS POR VISITAR AL HOTEL AYAYE, BUEN DIA!!!***");
+            parrafo3.setFont(tipoLetra);
+            parrafo3.setAlignment(1);
+            documento.add(parrafo3);
+            
+
+
+            documento.close();
+            JOptionPane.showMessageDialog(null, "ARCHIVO PDF CREADO CORRECTAMENTE", "Informacion", 1);
+        } else {
+            JOptionPane.showMessageDialog(null, "SE DEBEN LLENAR TODOS LOS CAMPOS", "Atencion", 2);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -92,6 +251,11 @@ public class CheckOut extends javax.swing.JInternalFrame {
         });
 
         jButtonTicket.setText("Generar recibo");
+        jButtonTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTicketActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,7 +332,7 @@ public class CheckOut extends javax.swing.JInternalFrame {
         PreparedStatement ps = null;
         Statement estado = null;
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
-        String fechaS = "";      
+        String fechaS = "";
         String hab = this.jTextFieldBaja.getText().trim();
 
         try {
@@ -208,6 +372,18 @@ public class CheckOut extends javax.swing.JInternalFrame {
     private void jTextFieldSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSalidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSalidaActionPerformed
+
+    private void jButtonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTicketActionPerformed
+        // TODO add your handling code here:
+        try {
+            generar("Hotel");
+        } catch (FileNotFoundException | DocumentException ex) {
+            System.out.println("ERROR CON EL ARCHIVO");
+        } catch (SQLException ex) {
+            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButtonTicketActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

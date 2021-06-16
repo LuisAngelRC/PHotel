@@ -441,7 +441,7 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         String parte1 = "INSERT INTO huespedes (nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, numHab, cuentaServicios, diasHospedaje) VALUES (";
         String parte2 = "'" + nombre + "','" + ciudad + "','" + formato.format(this.jDateChooser1.getDate()) + "','" + formato.format(aux.getTime()) + "','" + tipoHab + "','" + numPersonas 
-                + "','" + cuentaTotal + "','" + numPiso + "','" + numero + "','" + serv + "','" + dias +"')";
+                + "','" + cuentaTotal + "','" + numPiso + "','" + numero + "','" + serv + "','" + dias + "')";
         String query = parte1 + parte2;
         int j = this.conn.Update(query); //Ejecuta accion de alta en la base de datos
 
