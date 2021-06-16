@@ -2,6 +2,7 @@ package escritorio;
 
 import com.mysql.jdbc.Statement;
 import baseDatos.MySqlConn;
+import com.itextpdf.text.BadElementException;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
@@ -17,6 +18,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -44,7 +46,7 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
             FileOutputStream archivo = new FileOutputStream(nombre + ".pdf");
             Document documento = new Document();
-            documento.setMargins(60, 60, 0, 50); // (izq, der, arriba, abajo)
+            documento.setMargins(60, 60, 0, 50);
 
             PdfWriter.getInstance(documento, archivo);
             documento.open();
@@ -52,14 +54,13 @@ public class CheckOut extends javax.swing.JInternalFrame {
             com.itextpdf.text.Image logo = null;
 
             try {
-                logo = com.itextpdf.text.Image.getInstance(rutaLogo);//carga imagen
-                logo.scaleAbsolute(160, 160);//cambia tamaño
+                logo = com.itextpdf.text.Image.getInstance(rutaLogo);
+                logo.scaleAbsolute(160, 160);
                 logo.setAlignment(1);
-                //image.setAbsolutePosition(150, 100);//coloca imagen en la posicion
-            } catch (Exception e) {
+            } catch (BadElementException | IOException e) {
                 System.out.println("LA IMAGEN NO SE CARGÓ CORRECTAMENTE");
             }
-            documento.add(logo);//agrega la imagen al documento
+            documento.add(logo);
 
             Paragraph parrafo = new Paragraph("Ubicación: Tulum, Quintana Roo, Calle Grulla Sin Numero, Esq. Con Av, Calle Simón Bolivar KM 2.2, 77796 Francisco Uh May, Q.R.");
             parrafo.setFont(tipoLetra);
@@ -151,16 +152,12 @@ public class CheckOut extends javax.swing.JInternalFrame {
             String query3 = "UPDATE ingresos SET ingresosHotel = " + "'" + ingHotel + "'";
 
             try {
-
                 conn.Update(query3);
-
             } catch (Exception ex) {
-
                 System.err.println(ex);
                 JOptionPane.showMessageDialog(this, "No entro a la base");
             }
 
-            //String query2 = "INSERT INTO ingresos (ingresosHotel) VALUES (" + "'" + aux3 +"'";
             documento.add(new Paragraph("\n" + "Fecha del día de hoy: " + fecha, tipoLetra));
             documento.add(new Paragraph("\n" + "Nombre del huésped: " + nombreH, tipoLetra));
             documento.add(new Paragraph("\n" + "Ciudad: " + ciudad, tipoLetra));
@@ -177,14 +174,13 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
             com.itextpdf.text.Image firma = null;
             try {
-                firma = com.itextpdf.text.Image.getInstance(rutaFirma);//carga imagen
-                firma.scaleAbsolute(135, 135);//cambia tamaño
-                //firma.setAlignment(4);
-                firma.setAbsolutePosition(230, 100);//coloca imagen en la posicion
-            } catch (Exception e) {
+                firma = com.itextpdf.text.Image.getInstance(rutaFirma);
+                firma.scaleAbsolute(135, 135);
+                firma.setAbsolutePosition(230, 100);
+            } catch (BadElementException | IOException e) {
                 System.out.println("LA IMAGEN NO SE CARGÓ CORRECTAMENTE");
             }
-            documento.add(firma);//agrega la imagen al documento
+            documento.add(firma);
 
             Paragraph parrafoFirma = new Paragraph("\n\n\n\n\n\n\n\n\nFIRMA DEL GERENTE");
             parrafoFirma.setAlignment(1);
@@ -197,6 +193,7 @@ public class CheckOut extends javax.swing.JInternalFrame {
             documento.add(parrafo3);
 
             documento.close();
+
             JOptionPane.showMessageDialog(null, "ARCHIVO PDF CREADO CORRECTAMENTE", "Informacion", 1);
         } else {
             JOptionPane.showMessageDialog(null, "SE DEBEN LLENAR TODOS LOS CAMPOS", "Atencion", 2);
@@ -228,11 +225,6 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Escribe el numero de la habitación para salir:");
 
-        jTextFieldBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldBajaActionPerformed(evt);
-            }
-        });
         jTextFieldBaja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldBajaKeyTyped(evt);
@@ -260,11 +252,6 @@ public class CheckOut extends javax.swing.JInternalFrame {
         );
 
         jTextFieldSalida.setEditable(false);
-        jTextFieldSalida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSalidaActionPerformed(evt);
-            }
-        });
 
         jButtonTicket.setText("Generar recibo");
         jButtonTicket.addActionListener(new java.awt.event.ActionListener() {
@@ -325,12 +312,8 @@ public class CheckOut extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBajaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldBajaActionPerformed
-
     private void jTextFieldBajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBajaKeyTyped
-        // TODO add your handling code here:
+
         char validar = evt.getKeyChar();
 
         if (Character.isLetter(validar)) {
@@ -339,10 +322,10 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(this, "Escribe solamente numeros");
         }
+
     }//GEN-LAST:event_jTextFieldBajaKeyTyped
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-        // TODO add your handling code here:
 
         ResultSet resultados = null;
         PreparedStatement ps = null;
@@ -379,14 +362,12 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error en la base de datos" + ex);
-
         }
-
 
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     private void jButtonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTicketActionPerformed
-        // TODO add your handling code here:
+
         try {
             generar("ReciboHotel");
         } catch (FileNotFoundException | DocumentException ex) {
@@ -396,10 +377,6 @@ public class CheckOut extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jButtonTicketActionPerformed
-
-    private void jTextFieldSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSalidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSalidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

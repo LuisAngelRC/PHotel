@@ -18,27 +18,28 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class Habitaciones extends javax.swing.JInternalFrame {
+
     AudioClip Musica;
-    
+
     private static final Color COLOR_APP = new Color(50, 50, 50);
     private JFrame ventana;
     private ArrayList<Lamina> listImg;
     private JPanel nav;
     private JPanel contendorBotones;
     private Lamina foto;
-    
+
     public Habitaciones() {
-        
         initComponents();
-        
+
         listImg = new ArrayList<Lamina>();
         configuracionVentana();
         configuracionConponentes();
         ventana.setVisible(true);
         ventana.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    
+
     private void configuracionVentana() {
+
         ventana = new JFrame();
         ventana.setSize(1200, 600);
         ventana.setTitle("Habitaciones");
@@ -46,19 +47,19 @@ public class Habitaciones extends javax.swing.JInternalFrame {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.getContentPane().setBackground(COLOR_APP);
         ventana.setExtendedState(MAXIMIZED_BOTH);
+
     }
-    
-private void configuracionConponentes() {
-        
+
+    private void configuracionConponentes() {
+
         contendorBotones = new JPanel(new GridLayout(5, 1));
         JScrollPane scrol = new JScrollPane(contendorBotones);
-        
+
         Musica = java.applet.Applet.newAudioClip(getClass().getResource("/musica/Coro_Coral.wav"));
         JButton botonHunn = new JButton();
         botonHunn.setBackground(Color.decode("#d7d7a8"));
         botonHunn.setText("Tipo Hunn");
         botonHunn.setForeground(Color.decode("#804000"));
-        ///*---->Evento Local<------ */
         botonHunn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,12 +68,11 @@ private void configuracionConponentes() {
             }
         });
         contendorBotones.add(botonHunn);
-        
+
         JButton botonItza = new JButton();
         botonItza.setBackground(Color.decode("#d7d7a8"));
         botonItza.setText("Tipo Itza");
         botonItza.setForeground(Color.decode("#804000"));
-        ///*---->Evento Local<------ */
         botonItza.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,12 +81,11 @@ private void configuracionConponentes() {
             }
         });
         contendorBotones.add(botonItza);
-        
+
         JButton botonKauil = new JButton();
         botonKauil.setBackground(Color.decode("#d7d7a8"));
         botonKauil.setText("Tipo Kauil");
         botonKauil.setForeground(Color.decode("#804000"));
-        ///*---->Evento Local<------ */
         botonKauil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,15 +94,15 @@ private void configuracionConponentes() {
             }
         });
         contendorBotones.add(botonKauil);
-        
+
         ventana.add(scrol, BorderLayout.LINE_START);
-        
+
         foto = new Lamina("src/imagenes/ayaye_grande.png");
         foto.setBorder(BorderFactory.createMatteBorder(15, 15, 15, 15, COLOR_APP));
         ventana.add(foto, BorderLayout.CENTER);
 
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,36 +131,35 @@ private void configuracionConponentes() {
 }
 
 class Lamina extends JPanel {
-    
+
     private Image img = null;
     private ImageIcon icono;
-// Metodo constructor
 
     public Lamina(String urlFondo) {
         icono = new ImageIcon(urlFondo);
         img = icono.getImage();
     }
-    
+
     public void cambiarImagen(String urlFondo) {
         icono = new ImageIcon(urlFondo);
         img = icono.getImage();
     }
-    
+
     protected void paintComponent(Graphics g) {
         g.drawImage(img, 1, 1, getWidth(), getHeight(), this);
         setOpaque(false);
     }
 }
 
-class Controller2 {
-    
-    private Habitaciones window;
-    
-    public Controller2() {
-        window = new Habitaciones();
+class Controlador {
+
+    private Habitaciones ventana;
+
+    public Controlador() {
+        ventana = new Habitaciones();
     }
-    
+
     public static void main(String[] args) {
-        new Controller2();
+        new Controlador();
     }
 }

@@ -6,9 +6,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -27,46 +24,39 @@ public class Ocupacion extends javax.swing.JInternalFrame {
     }
 
     public Ocupacion() {
-        
-        /*
-        try {
-            llenado();
-        } catch (NumberFormatException ex) {
-            System.out.println("");
-        }
-                */
         initComponents();
         this.jLabelHab.setEnabled(false);
     }
-    
-    public void paint(Graphics g){
+
+    public void paint(Graphics g) {
+
         super.paint(g);
-        if(bandera == true){
-            
+        if (bandera == true) {
+
             int total_votos = hunn + itza + kauil;
-            
+
             int grados_rojo = hunn * 360 / total_votos;
             int grados_verde = itza * 360 / total_votos;
             int grados_azul = kauil * 360 / total_votos;
-            
+
             g.setColor(new Color(255, 0, 0));
             g.fillArc(25, 80, 200, 200, 0, grados_rojo);
             g.fillRect(250, 120, 20, 20);
             g.drawString("Habitaciones Hunn", 275, 135);
-            
+
             g.setColor(new Color(0, 130, 0));
             g.fillArc(25, 80, 200, 200, grados_rojo, grados_verde);
             g.fillRect(250, 150, 20, 20);
             g.drawString("Habitaciones Itza", 275, 165);
-            
+
             g.setColor(new Color(0, 0, 255));
             g.fillArc(25, 80, 200, 200, grados_rojo + grados_verde, grados_azul);
             g.fillRect(250, 180, 20, 20);
             g.drawString("Habitaciones Kauil", 275, 195);
         }
+
     }
 
-    //rs.getFetchSize();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,11 +103,6 @@ public class Ocupacion extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextArea1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTextArea1);
 
         jButtonMostrar.setText("Mostrar");
@@ -192,38 +177,19 @@ public class Ocupacion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextArea1MouseClicked
-
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
-        // TODO add your handling code here:
-        
-        /*
-        PreparedStatement ps = null;
-            ResultSet rs = null;
-            MySqlConn conn = new MySqlConn();
-            Connection con = conn.getConexion();
 
-            String campo = this.jTextFieldBaja.getText().trim();
-
-            String query = "SELECT nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, numHab, cuentaServicios, diasHospedaje FROM huespedes WHERE numHab = " + "'" + campo + "'";
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery(query);
-            
-            rs.first();
-        */
         this.jTextArea1.setText("");
         this.jTextArea1.append("\nTotal de habitaciones: " + totalHab);
         this.jTextArea1.append("\nTotal de habitaciones Hunn: " + hunn);
         this.jTextArea1.append("\nTotal de habitaciones Itza: " + itza);
         this.jTextArea1.append("\nTotal de habitaciones Kauil: " + kauil);
-        
+
         this.jTextArea1.append("\n\nPISO 1\n");
         this.jTextArea1.append("\nHunn: " + Hunn1 + " habitaciones");
         this.jTextArea1.append("\nItza: " + Itza1 + " habitaciones");
         this.jTextArea1.append("\nKauil: " + Kauil1 + " habitaciones");
-        
+
         this.jTextArea1.append("\n\nPISO 2\n");
         this.jTextArea1.append("\nHunn: " + Hunn2 + " habitaciones");
         this.jTextArea1.append("\nItza: " + Itza2 + " habitaciones");
@@ -232,48 +198,44 @@ public class Ocupacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonMostrarActionPerformed
 
     private void jButtonCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCostosActionPerformed
-        // TODO add your handling code here:
+
         this.jTextArea1.setText("");
-        
+
         this.jTextArea1.append("\nCOSTOS\n");
         this.jTextArea1.append("\nHabitación tipo Hunn: " + 2800);
         this.jTextArea1.append("\nHabitación tipo Itza: " + 3300);
         this.jTextArea1.append("\nHabitación tipo Kauil: " + 4600);
-        
+
         this.jTextArea1.append("\n\nCOSTOS EXTRA\n");
         this.jTextArea1.append("\n1 persona extra: " + 400);
         this.jTextArea1.append("\n2 personas extra: " + 800);
-        
+
     }//GEN-LAST:event_jButtonCostosActionPerformed
 
     private void jButtonGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGraficarActionPerformed
-        // TODO add your handling code here:
+
         bandera = true;
         repaint();
-        
+
         this.jLabelHab.setEnabled(true);
-        
+
     }//GEN-LAST:event_jButtonGraficarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
-        
+
         try {
+            Registros reg = new Registros();
+            Escritorio.jDesktopPane1.add(reg);
 
-                Registros reg = new Registros();
-                Escritorio.jDesktopPane1.add(reg);
-
-                Dimension tamanio = jDesktopPane1.getSize();
-                Dimension tamFrame = reg.getSize();
-                reg.setLocation((tamanio.width - tamFrame.width) / 2, (tamanio.height - tamFrame.height) / 2);
-                reg.show();
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, e);
-            }
+            Dimension tamanio = jDesktopPane1.getSize();
+            Dimension tamFrame = reg.getSize();
+            reg.setLocation((tamanio.width - tamFrame.width) / 2, (tamanio.height - tamFrame.height) / 2);
+            reg.show();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al abrir el panel Registros");
+        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;

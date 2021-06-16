@@ -1,4 +1,3 @@
-
 package escritorio;
 
 import baseDatos.MySqlConn;
@@ -10,14 +9,15 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Registros extends javax.swing.JInternalFrame {
 
     public Registros() {
-        initComponents();     
+        initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -80,12 +80,6 @@ public class Registros extends javax.swing.JInternalFrame {
         jButtonCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCargarActionPerformed(evt);
-            }
-        });
-
-        jTextFieldNumHab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNumHabActionPerformed(evt);
             }
         });
 
@@ -193,32 +187,30 @@ public class Registros extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarActionPerformed
-        // TODO add your handling code here:
-        
+
         String campo = this.jTextFieldNumHab.getText().trim();
         String where = "";
-        
+
         if (!campo.isEmpty()) {
             where = "WHERE numHab = " + "'" + campo + "'";
         }
-        
+
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             this.jTableRegistro.setModel(modelo);
-            
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             MySqlConn conn = new MySqlConn();
             Connection con = conn.getConexion();
-            
+
             String query = "SELECT numHab, nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, cuentaServicios, diasHospedaje FROM huespedes " + where;
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
-            
+
             ResultSetMetaData rsMd = rs.getMetaData();
             int cantidadColumnas = rsMd.getColumnCount();
-            
-            
+
             modelo.addColumn("Habitación");
             modelo.addColumn("Nombre");
             modelo.addColumn("Ciudad");
@@ -230,53 +222,48 @@ public class Registros extends javax.swing.JInternalFrame {
             modelo.addColumn("Piso");
             modelo.addColumn("cuentaServ");
             modelo.addColumn("diasHospedaje");
-            
+
             while (rs.next()) {
-                
+
                 Object[] filas = new Object[cantidadColumnas];
-                
+
                 for (int i = 0; i < cantidadColumnas; i++) {
                     filas[i] = rs.getObject(i + 1);
                 }
-                
+
                 modelo.addRow(filas);
             }
-            
+
         } catch (SQLException ex) {
-            System.err.println(ex.toString());
-        } 
+            JOptionPane.showMessageDialog(this, "Error con la base de datos");
+        }
     }//GEN-LAST:event_jButtonCargarActionPerformed
 
-    private void jTextFieldNumHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumHabActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNumHabActionPerformed
-
     private void jButtonCargar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargar2ActionPerformed
-        // TODO add your handling code here:
-        
+
         String campo = this.jTextFieldNom.getText().trim();
         String where = "";
-        
+
         if (!campo.isEmpty()) {
             where = "WHERE nombre = " + "'" + campo + "'";
         }
-        
+
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             this.jTableRegistro.setModel(modelo);
-            
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             MySqlConn conn = new MySqlConn();
             Connection con = conn.getConexion();
-            
+
             String query = "SELECT nombre, ciudad, fechaE, fechaS, tipoH, numPersonas, cuentaNumPersonas, numPiso, numHab, cuentaServicios, diasHospedaje FROM huespedes " + where;
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
-            
+
             ResultSetMetaData rsMd = rs.getMetaData();
             int cantidadColumnas = rsMd.getColumnCount();
-            
+
             modelo.addColumn("Nombre");
             modelo.addColumn("Ciudad");
             modelo.addColumn("Fecha Entrada");
@@ -288,24 +275,24 @@ public class Registros extends javax.swing.JInternalFrame {
             modelo.addColumn("Habitación");
             modelo.addColumn("cuentaServ");
             modelo.addColumn("diasHospedaje");
-            
+
             while (rs.next()) {
-                
+
                 Object[] filas = new Object[cantidadColumnas];
-                
+
                 for (int i = 0; i < cantidadColumnas; i++) {
                     filas[i] = rs.getObject(i + 1);
                 }
-                
+
                 modelo.addRow(filas);
             }
-            
+
         } catch (SQLException ex) {
-            System.err.println(ex.toString());
-        } 
+            JOptionPane.showMessageDialog(this, "Error con la base de datos");
+        }
+
     }//GEN-LAST:event_jButtonCargar2ActionPerformed
-    
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCargar;

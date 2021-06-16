@@ -1,7 +1,6 @@
 package escritorio;
 
 import baseDatos.MySqlConn;
-
 import static escritorio.Escritorio.jDesktopPane1;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -67,11 +66,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Escribe el nombre del huésped:");
 
-        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreActionPerformed(evt);
-            }
-        });
         jTextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNombreKeyTyped(evt);
@@ -80,11 +74,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Escribe la ciudad de origen del huésped:");
 
-        jTextFieldCiudad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCiudadActionPerformed(evt);
-            }
-        });
         jTextFieldCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldCiudadKeyTyped(evt);
@@ -95,11 +84,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Escribe el numero de personas que la ocupan:");
 
-        jTextFieldNumPersonas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNumPersonasActionPerformed(evt);
-            }
-        });
         jTextFieldNumPersonas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNumPersonasKeyTyped(evt);
@@ -135,11 +119,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(jRadioButton1Per);
         jRadioButton1Per.setText("1 persona extra");
-        jRadioButton1Per.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1PerActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(jRadioButton2Per);
         jRadioButton2Per.setText("2 personas extra");
@@ -258,7 +237,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldNumPersonasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumPersonasKeyTyped
-        // TODO add your handling code here:
 
         char validar = evt.getKeyChar();
 
@@ -272,7 +250,7 @@ public class CheckIn extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextFieldNumPersonasKeyTyped
 
     private void jTextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyTyped
-        // TODO add your handling code here:
+
         char validar = evt.getKeyChar();
 
         if (Character.isDigit(validar)) {
@@ -281,10 +259,11 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(this, "Escribe solamente texto");
         }
+        
     }//GEN-LAST:event_jTextFieldNombreKeyTyped
 
     private void jTextFieldCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCiudadKeyTyped
-        // TODO add your handling code here:
+
         char validar = evt.getKeyChar();
 
         if (Character.isDigit(validar)) {
@@ -293,10 +272,10 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(this, "Escribe solamente texto");
         }
+        
     }//GEN-LAST:event_jTextFieldCiudadKeyTyped
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
-        // TODO add your handling code here:
 
         SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
         String fechaIngreso = formato.format(this.jDateChooser1.getDate());
@@ -342,7 +321,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
         }
 
         if ("Hunn".equals(tipoHab)) {
-
             cuentaTotal += costoHunn;
 
             if (numP > 3) {
@@ -374,7 +352,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
                         return;
                     }
                 }
-
             }
 
             if (numPiso == 1 && Hunn1 != 0) {
@@ -403,7 +380,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
         System.out.println(Hunn2);
 
         if ("Itza".equals(tipoHab)) {
-
             cuentaTotal += costoItza;
 
             if (numP > 4) {
@@ -435,7 +411,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
                         return;
                     }
                 }
-
             }
 
             if (numPiso == 1 && Itza1 != 0) {
@@ -463,7 +438,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
         System.out.println(Itza2);
 
         if ("Kauil".equals(tipoHab)) {
-
             cuentaTotal += costoKauil;
 
             if (numP > 5) {
@@ -495,7 +469,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
                         return;
                     }
                 }
-
             }
 
             if (numPiso == 1 && Kauil1 != 0) {
@@ -526,14 +499,13 @@ public class CheckIn extends javax.swing.JInternalFrame {
         String parte2 = "'" + nombre + "','" + ciudad + "','" + formato.format(this.jDateChooser1.getDate()) + "','" + formato.format(aux.getTime()) + "','" + tipoHab + "','" + numPersonas
                 + "','" + cuentaTotal + "','" + numPiso + "','" + numero + "','" + serv + "','" + dias + "')";
         String query = parte1 + parte2;
-        int j = this.conn.Update(query); //Ejecuta accion de alta en la base de datos
+        int j = this.conn.Update(query); 
 
         if (j > 0) {
             System.out.println("Numero de registros afectados por la accion: " + j);
             JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO, su numero de habitacion es: " + numero);
 
             try {
-
                 Registros reg = new Registros();
                 Escritorio.jDesktopPane1.add(reg);
 
@@ -541,12 +513,11 @@ public class CheckIn extends javax.swing.JInternalFrame {
                 Dimension tamFrame = reg.getSize();
                 reg.setLocation((tamanio.width - tamFrame.width) / 2, (tamanio.height - tamFrame.height) / 2);
                 reg.show();
-
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, e);
+                JOptionPane.showMessageDialog(this, "Error al abrir el panel Registros");
             }
         }
-
+        
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
     public int getNumHab() {
@@ -559,22 +530,6 @@ public class CheckIn extends javax.swing.JInternalFrame {
         this.jTextFieldCiudad.setText("");
         this.jTextFieldNumPersonas.setText("");
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
-
-    private void jRadioButton1PerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1PerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1PerActionPerformed
-
-    private void jTextFieldNumPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumPersonasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNumPersonasActionPerformed
-
-    private void jTextFieldCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCiudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCiudadActionPerformed
-
-    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

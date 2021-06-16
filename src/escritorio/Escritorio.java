@@ -4,20 +4,18 @@ import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
-import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Escritorio extends javax.swing.JFrame {
 
     AudioClip Musica;
-    
+
     LogIn log = new LogIn();
     private int bandera = 0;
     private int banderaLog = 0;
-    
+
     public Escritorio() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -194,6 +192,7 @@ public class Escritorio extends javax.swing.JFrame {
         }
 
         this.dispose();
+        
     }//GEN-LAST:event_jMenuSalirMouseClicked
 
     private void jMenuCheckInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCheckInMouseClicked
@@ -202,10 +201,10 @@ public class Escritorio extends javax.swing.JFrame {
             Musica.stop();
             bandera = 0;
         }
-        
+
         banderaLog = log.getBandera();
-        
-        if(banderaLog == 1){
+
+        if (banderaLog == 1) {
             this.jDesktopPane1.removeAll();
             this.repaint();
 
@@ -218,12 +217,10 @@ public class Escritorio extends javax.swing.JFrame {
                 System.out.println("ERROR: " + ex);
             }
             check.show();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        
-        
-        
+
     }//GEN-LAST:event_jMenuCheckInMouseClicked
 
     private void jMenuCheckOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCheckOutMouseClicked
@@ -232,10 +229,10 @@ public class Escritorio extends javax.swing.JFrame {
             Musica.stop();
             bandera = 0;
         }
-        
+
         banderaLog = log.getBandera();
-        
-        if(banderaLog == 1){
+
+        if (banderaLog == 1) {
             this.jDesktopPane1.removeAll();
             this.repaint();
 
@@ -248,10 +245,10 @@ public class Escritorio extends javax.swing.JFrame {
                 System.out.println("ERROR: " + ex);
             }
             check.show();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        
+
     }//GEN-LAST:event_jMenuCheckOutMouseClicked
 
     private void jMenuOcupacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuOcupacionMouseClicked
@@ -260,10 +257,10 @@ public class Escritorio extends javax.swing.JFrame {
             Musica.stop();
             bandera = 0;
         }
-        
+
         banderaLog = log.getBandera();
-        
-        if(banderaLog == 1){
+
+        if (banderaLog == 1) {
             this.jDesktopPane1.removeAll();
             this.repaint();
 
@@ -276,11 +273,10 @@ public class Escritorio extends javax.swing.JFrame {
                 System.out.println("ERROR: " + ex);
             }
             ocupacion.show();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        
-        
+
     }//GEN-LAST:event_jMenuOcupacionMouseClicked
 
     private void jMenuServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuServiciosMouseClicked
@@ -289,15 +285,15 @@ public class Escritorio extends javax.swing.JFrame {
             Musica.stop();
             bandera = 0;
         }
-        
+
         banderaLog = log.getBandera();
-        
-        if(banderaLog == 1){
+
+        if (banderaLog == 1) {
             this.jDesktopPane1.removeAll();
             this.repaint();
 
-        this.jDesktopPane1.removeAll();
-        this.repaint();
+            this.jDesktopPane1.removeAll();
+            this.repaint();
 
             Servicios servicios = new Servicios();
             this.jDesktopPane1.add(servicios);
@@ -308,29 +304,28 @@ public class Escritorio extends javax.swing.JFrame {
                 System.out.println("ERROR: " + ex);
             }
             servicios.show();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "No esta registrado!!!");
         }
-        
 
     }//GEN-LAST:event_jMenuServiciosMouseClicked
 
     private void jButton1LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1LoginActionPerformed
-        
+
         try {
-            
             log.setLocationRelativeTo(null);
             this.setVisible(true);
             log.setVisible(true);
-            
+
             System.out.println("El valor de bandera es: " + banderaLog);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }
+
     }//GEN-LAST:event_jButton1LoginActionPerformed
 
     private void jMenuItemHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHabitacionesActionPerformed
-        // TODO add your handling code here:
+
         if (bandera == 1) {
             Musica.stop();
             Musica.play();
@@ -358,23 +353,24 @@ public class Escritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemHabitacionesActionPerformed
 
     private void jButtonPortadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPortadaActionPerformed
-        // TODO add your handling code here:
+
         this.jDesktopPane1.removeAll();
         this.repaint();
 
         Portada portada = new Portada();
-        this.jDesktopPane1.add(portada); //agregamos el JInternalFrameAltas al jDesktopPanel
+        this.jDesktopPane1.add(portada);
 
         try {
             portada.setMaximum(true);
         } catch (PropertyVetoException ex) {
             java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        portada.show(); //mostrar el jDesktopPanel
+        portada.show(); 
+        
     }//GEN-LAST:event_jButtonPortadaActionPerformed
 
     private void jMenuItemHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHotelActionPerformed
-        // TODO add your handling code here:
+        
         if (bandera == 1) {
             Musica.stop();
             Musica.play();
@@ -390,19 +386,19 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         Hotel hot = new Hotel();
-        this.jDesktopPane1.add(hot); //agregamos el JInternalFrameAltas al jDesktopPanel
+        this.jDesktopPane1.add(hot); 
 
         try {
             hot.setMaximum(true);
         } catch (PropertyVetoException ex) {
             java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        hot.show(); //mostrar el jDesktopPanel
+        hot.show(); 
 
     }//GEN-LAST:event_jMenuItemHotelActionPerformed
 
     private void jMenuItemAlberGymActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlberGymActionPerformed
-        // TODO add your handling code here:
+
         if (bandera == 1) {
             Musica.stop();
             Musica.play();
@@ -418,19 +414,18 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         AlbercaGym alberGym = new AlbercaGym();
-        this.jDesktopPane1.add(alberGym); //agregamos el JInternalFrameAltas al jDesktopPanel
+        this.jDesktopPane1.add(alberGym); 
 
         try {
             alberGym.setMaximum(true);
         } catch (PropertyVetoException ex) {
             java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        alberGym.show(); //mostrar el jDesktopPanel
+        alberGym.show(); 
 
     }//GEN-LAST:event_jMenuItemAlberGymActionPerformed
 
     private void jMenuItemRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRestaurantActionPerformed
-        // TODO add your handling code here:
 
         if (bandera == 1) {
             Musica.stop();
@@ -447,14 +442,14 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         Restaurantes rest = new Restaurantes();
-        this.jDesktopPane1.add(rest); //agregamos el JInternalFrameAltas al jDesktopPanel
+        this.jDesktopPane1.add(rest); 
 
         try {
             rest.setMaximum(true);
         } catch (PropertyVetoException ex) {
             java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        rest.show(); //mostrar el jDesktopPanel
+        rest.show(); 
 
     }//GEN-LAST:event_jMenuItemRestaurantActionPerformed
 

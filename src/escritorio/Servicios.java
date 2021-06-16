@@ -4,7 +4,6 @@ import baseDatos.MySqlConn;
 import com.mysql.jdbc.Statement;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
@@ -22,7 +21,6 @@ public class Servicios extends javax.swing.JInternalFrame {
     public Servicios(MySqlConn conn) {
         this.conn = conn;
         initComponents();
-
     }
 
     public Servicios() {
@@ -204,9 +202,8 @@ public class Servicios extends javax.swing.JInternalFrame {
         return cuentaTot;
     }
 
-
     private void jTextFieldNumeroHabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroHabKeyTyped
-        // TODO add your handling code here:
+
         char validar = evt.getKeyChar();
 
         if (Character.isLetter(validar)) {
@@ -215,10 +212,11 @@ public class Servicios extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(this, "Escribe solamente numeros");
         }
+
     }//GEN-LAST:event_jTextFieldNumeroHabKeyTyped
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
+
         boolean dbexisteRegistro = false;
         String numhab = "";
 
@@ -232,7 +230,6 @@ public class Servicios extends javax.swing.JInternalFrame {
         if (!habitacion.isEmpty()) {
             where = "WHERE numHab = " + "'" + Integer.parseInt(habitacion) + "'";
             try {
-
                 String query = "SELECT numHab FROM huespedes " + where;
                 oSt = (Statement) conn.conn.createStatement();
                 oRs = oSt.executeQuery(query);
@@ -246,12 +243,11 @@ public class Servicios extends javax.swing.JInternalFrame {
                 if (oSt != null) {
                     oSt.close();
                     oSt = null;
-
                 }
+                
                 if (oRs != null) {
                     oRs.close();
                     oRs = null;
-
                 }
 
             } catch (SQLException ex) {
@@ -267,22 +263,20 @@ public class Servicios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No existe la habitacion");
             banderaServicios = 0;
         }
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonAgregarCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarCostosActionPerformed
-        // TODO add your handling code here:
+
         int cuentaServicios = TotalSrev();
         if (banderaServicios == 1) {
             String query = "UPDATE huespedes SET cuentaServicios = " + "'" + cuentaServicios + "'" + " WHERE numHab = " + "'" + Integer.parseInt(this.jTextFieldNumeroHab.getText().trim()) + "'";
 
             try {
-
                 conn.Update(query);
-
             } catch (Exception ex) {
-
                 System.err.println(ex);
-                JOptionPane.showMessageDialog(this, "No entro a la base");
+                JOptionPane.showMessageDialog(this, "No entró a la base");
             }
             JOptionPane.showMessageDialog(this, "Total de la suma de los servicios: " + cuentaServicios);
         } else {

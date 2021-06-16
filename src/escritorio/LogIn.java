@@ -20,7 +20,6 @@ public class LogIn extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -136,13 +135,11 @@ public class LogIn extends javax.swing.JFrame {
 
     
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-        // TODO add your handling code here:
         this.jTextFieldNombreUsuario.setText("");
         this.jPasswordFieldContrasena.setText("");
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
-        // TODO add your handling code here:
 
         String usuario, contrasena, query;
         usuario = this.jTextFieldNombreUsuario.getText().trim();
@@ -157,17 +154,14 @@ public class LogIn extends javax.swing.JFrame {
             String contrasenaencriptada = DigestUtils.md5Hex(contrasena);
             if (contrasenaMySql.equals(contrasenaencriptada)) {
                 bandera = 1;
-                System.out.println("Bandera en login vale: " + bandera);
                 JOptionPane.showMessageDialog(this, "Bienvenido " + this.conn.rs.getString(1) + " al sistema");
                 this.dispose();
             } else {
                 bandera = 0;
-                System.out.println("Bandera en login vale: " + bandera);
                 JOptionPane.showMessageDialog(this, "Error en la contraseña");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "No existe el usuario");
-            System.out.println("No existe el usuario");
         }
         
         this.dispose();
@@ -175,7 +169,7 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
     private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
-        // TODO add your handling code here:
+
         String cuenta, contrasena, parte1, parte2, query;
         cuenta = this.jTextFieldNombreUsuario.getText().trim();
         char[] passw = this.jPasswordFieldContrasena.getPassword();
@@ -191,9 +185,9 @@ public class LogIn extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Cuenta registrada!!!");
             System.out.println("Cuenta registrada!!!");
         }
+        
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
-    
     public int getBandera() {
         return bandera;
     }
