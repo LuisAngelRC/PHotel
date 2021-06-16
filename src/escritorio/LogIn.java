@@ -40,15 +40,21 @@ public class LogIn extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(153, 153, 153));
         jPanel1.setName(""); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Lucida Fax", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Log-In");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre de usuario:");
 
+        jLabel3.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña:");
 
+        jButtonIniciarSesion.setBackground(new java.awt.Color(204, 255, 255));
+        jButtonIniciarSesion.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonIniciarSesion.setForeground(new java.awt.Color(0, 0, 0));
         jButtonIniciarSesion.setText("Iniciar sesión");
         jButtonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +62,9 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
+        jButtonLimpiar.setBackground(new java.awt.Color(204, 255, 255));
+        jButtonLimpiar.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonLimpiar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonLimpiar.setText("Limpiar");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +72,9 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
+        jButtonRegistro.setBackground(new java.awt.Color(204, 255, 255));
+        jButtonRegistro.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonRegistro.setForeground(new java.awt.Color(0, 0, 0));
         jButtonRegistro.setText("Registrar cuenta");
         jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,34 +86,37 @@ public class LogIn extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(257, 257, 257))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPasswordFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 75, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButtonIniciarSesion)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel1))
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                            .addComponent(jPasswordFieldContrasena)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButtonIniciarSesion)
+                        .addGap(38, 38, 38)
                         .addComponent(jButtonRegistro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonLimpiar)
-                        .addGap(39, 39, 39))))
+                        .addGap(35, 35, 35)
+                        .addComponent(jButtonLimpiar)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonIniciarSesion, jButtonLimpiar, jButtonRegistro});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -111,13 +126,17 @@ public class LogIn extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jPasswordFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonIniciarSesion)
-                    .addComponent(jButtonLimpiar)
-                    .addComponent(jButtonRegistro))
-                .addContainerGap(61, Short.MAX_VALUE))
+                    .addComponent(jButtonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRegistro)
+                    .addComponent(jButtonLimpiar))
+                .addGap(52, 52, 52))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPasswordFieldContrasena, jTextFieldNombreUsuario});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonIniciarSesion, jButtonLimpiar, jButtonRegistro});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,7 +174,6 @@ public class LogIn extends javax.swing.JFrame {
             if (contrasenaMySql.equals(contrasenaencriptada)) {
                 bandera = 1;
                 JOptionPane.showMessageDialog(this, "Bienvenido " + this.conn.rs.getString(1) + " al sistema");
-                this.dispose();
             } else {
                 bandera = 0;
                 JOptionPane.showMessageDialog(this, "Error en la contraseña");
@@ -163,9 +181,7 @@ public class LogIn extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "No existe el usuario");
         }
-        
-        this.dispose();
-        this.dispose();
+   
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
     private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed

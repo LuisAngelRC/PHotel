@@ -1,6 +1,7 @@
 package escritorio;
 
 import java.applet.AudioClip;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
@@ -33,7 +34,7 @@ public class Escritorio extends javax.swing.JFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
         };
-        jButton1Login = new javax.swing.JButton();
+        jButtonLogin = new javax.swing.JButton();
         jButtonPortada = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCheckIn = new javax.swing.JMenu();
@@ -51,13 +52,19 @@ public class Escritorio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1Login.setText("Log-In");
-        jButton1Login.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLogin.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonLogin.setFont(new java.awt.Font("Lucida Fax", 3, 14)); // NOI18N
+        jButtonLogin.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonLogin.setText("Log-In");
+        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1LoginActionPerformed(evt);
+                jButtonLoginActionPerformed(evt);
             }
         });
 
+        jButtonPortada.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonPortada.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonPortada.setForeground(new java.awt.Color(0, 0, 0));
         jButtonPortada.setText("Mostrar Portada");
         jButtonPortada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,21 +78,27 @@ public class Escritorio extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jButtonPortada)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
-                .addComponent(jButton1Login)
+                .addComponent(jButtonPortada, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addComponent(jButtonLogin)
                 .addGap(55, 55, 55))
         );
+
+        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonLogin, jButtonPortada});
+
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(268, Short.MAX_VALUE)
+                .addContainerGap(254, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1Login)
-                    .addComponent(jButtonPortada))
+                    .addComponent(jButtonLogin)
+                    .addComponent(jButtonPortada, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
-        jDesktopPane1.setLayer(jButton1Login, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonLogin, jButtonPortada});
+
+        jDesktopPane1.setLayer(jButtonLogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButtonPortada, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
@@ -191,7 +204,7 @@ public class Escritorio extends javax.swing.JFrame {
         }
 
         this.dispose();
-        
+
     }//GEN-LAST:event_jMenuSalirMouseClicked
 
     private void jMenuCheckInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCheckInMouseClicked
@@ -309,7 +322,7 @@ public class Escritorio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuServiciosMouseClicked
 
-    private void jButton1LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1LoginActionPerformed
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
 
         try {
             log.setLocationRelativeTo(null);
@@ -320,7 +333,7 @@ public class Escritorio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
 
-    }//GEN-LAST:event_jButton1LoginActionPerformed
+    }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jMenuItemHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHabitacionesActionPerformed
 
@@ -339,19 +352,28 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         Habitaciones hab = new Habitaciones();
-        this.jDesktopPane1.add(hab); 
+        this.jDesktopPane1.add(hab);
 
         try {
             hab.setMaximum(true);
         } catch (PropertyVetoException ex) {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
-        hab.show(); 
+        hab.show();
 
     }//GEN-LAST:event_jMenuItemHabitacionesActionPerformed
 
     private void jButtonPortadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPortadaActionPerformed
 
+        
+        Portada reg = new Portada();
+                Escritorio.jDesktopPane1.add(reg);
+
+                Dimension tamanio = jDesktopPane1.getSize();
+                Dimension tamFrame = reg.getSize();
+                reg.setLocation((tamanio.width - tamFrame.width) / 2, (tamanio.height - tamFrame.height) / 2);
+                reg.show();
+        /*
         this.jDesktopPane1.removeAll();
         this.repaint();
 
@@ -363,12 +385,13 @@ public class Escritorio extends javax.swing.JFrame {
         } catch (PropertyVetoException ex) {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
-        portada.show(); 
-        
+        portada.show();
+                */
+
     }//GEN-LAST:event_jButtonPortadaActionPerformed
 
     private void jMenuItemHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHotelActionPerformed
-        
+
         if (bandera == 1) {
             Musica.stop();
             Musica.play();
@@ -384,14 +407,14 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         Hotel hot = new Hotel();
-        this.jDesktopPane1.add(hot); 
+        this.jDesktopPane1.add(hot);
 
         try {
             hot.setMaximum(true);
         } catch (PropertyVetoException ex) {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
-        hot.show(); 
+        hot.show();
 
     }//GEN-LAST:event_jMenuItemHotelActionPerformed
 
@@ -412,14 +435,14 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         AlbercaGym alberGym = new AlbercaGym();
-        this.jDesktopPane1.add(alberGym); 
+        this.jDesktopPane1.add(alberGym);
 
         try {
             alberGym.setMaximum(true);
         } catch (PropertyVetoException ex) {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
-        alberGym.show(); 
+        alberGym.show();
 
     }//GEN-LAST:event_jMenuItemAlberGymActionPerformed
 
@@ -440,14 +463,14 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         Restaurantes rest = new Restaurantes();
-        this.jDesktopPane1.add(rest); 
+        this.jDesktopPane1.add(rest);
 
         try {
             rest.setMaximum(true);
         } catch (PropertyVetoException ex) {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
-        rest.show(); 
+        rest.show();
 
     }//GEN-LAST:event_jMenuItemRestaurantActionPerformed
 
@@ -482,7 +505,7 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1Login;
+    private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonPortada;
     public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;

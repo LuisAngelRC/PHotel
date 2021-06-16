@@ -56,8 +56,11 @@ public class Servicios extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Servicios");
 
-        jLabel1.setText("Escribe el numero de habitación:");
+        jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
+        jLabel1.setText("Escribe el número de habitación:");
 
+        jButtonBuscar.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,23 +74,33 @@ public class Servicios extends javax.swing.JInternalFrame {
             }
         });
 
+        jCheckBoxRoom.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jCheckBoxRoom.setText("Room Service");
 
+        jCheckBoxBar.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jCheckBoxBar.setText("Bar");
 
+        jCheckBoxSPA.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jCheckBoxSPA.setText("SPA");
 
+        jCheckBoxExGui.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jCheckBoxExGui.setText("Excursión guiada ");
 
+        jCheckBoxBuceo.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jCheckBoxBuceo.setText("Buceo");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel2.setText("Costo fijo: $1000");
 
+        jLabel3.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel3.setText("Costo fijo: $600");
 
+        jLabel4.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel4.setText("Costo fijo: $1500");
 
-        jButtonAgregarCostos.setText("Agregar");
+        jButtonAgregarCostos.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonAgregarCostos.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonAgregarCostos.setText("Agregar costos");
         jButtonAgregarCostos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAgregarCostosActionPerformed(evt);
@@ -109,17 +122,21 @@ public class Servicios extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldNumeroHab, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addComponent(jButtonBuscar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBoxBar)
                             .addComponent(jCheckBoxRoom)
@@ -131,21 +148,17 @@ public class Servicios extends javax.swing.JInternalFrame {
                                 .addGap(65, 65, 65)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jButtonAgregarCostos)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap())
+                                        .addComponent(jLabel3)
+                                        .addGap(89, 89, 89)
+                                        .addComponent(jButtonAgregarCostos)))))))
+                .addContainerGap(576, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldNumeroHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,9 +180,7 @@ public class Servicios extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBoxBuceo)
                     .addComponent(jLabel4))
-                .addContainerGap(51, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

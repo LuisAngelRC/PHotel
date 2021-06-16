@@ -1,5 +1,6 @@
 package escritorio;
 
+import com.itextpdf.text.Font;
 import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -58,6 +59,7 @@ public class Habitaciones extends javax.swing.JInternalFrame {
         Musica = java.applet.Applet.newAudioClip(getClass().getResource("/musica/Coro_Coral.wav"));
         JButton botonHunn = new JButton();
         botonHunn.setBackground(Color.decode("#d7d7a8"));
+        botonHunn.setFont(new java.awt.Font("Lucida Fax", 1, 14));
         botonHunn.setText("Tipo Hunn");
         botonHunn.setForeground(Color.decode("#804000"));
         botonHunn.addActionListener(new ActionListener() {
@@ -71,6 +73,7 @@ public class Habitaciones extends javax.swing.JInternalFrame {
 
         JButton botonItza = new JButton();
         botonItza.setBackground(Color.decode("#d7d7a8"));
+        botonItza.setFont(new java.awt.Font("Lucida Fax", 1, 14));
         botonItza.setText("Tipo Itza");
         botonItza.setForeground(Color.decode("#804000"));
         botonItza.addActionListener(new ActionListener() {
@@ -84,6 +87,7 @@ public class Habitaciones extends javax.swing.JInternalFrame {
 
         JButton botonKauil = new JButton();
         botonKauil.setBackground(Color.decode("#d7d7a8"));
+        botonKauil.setFont(new java.awt.Font("Lucida Fax", 1, 14));
         botonKauil.setText("Tipo Kauil");
         botonKauil.setForeground(Color.decode("#804000"));
         botonKauil.addActionListener(new ActionListener() {

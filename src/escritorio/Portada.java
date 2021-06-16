@@ -6,7 +6,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Portada extends javax.swing.JInternalFrame {
-
+    
+    int bandera = 0;
+    
     public Portada() {
         initComponents();
     }
@@ -37,7 +39,6 @@ public class Portada extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButtonSalir = new javax.swing.JButton();
-        jButtonLog = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -96,6 +97,9 @@ public class Portada extends javax.swing.JInternalFrame {
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setText("269730");
 
+        jButtonSalir.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonSalir.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(0, 0, 0));
         jButtonSalir.setText("Regresar");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,19 +107,12 @@ public class Portada extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonLog.setText("Log-In");
-        jButtonLog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLogActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(206, 206, 206)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel5)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,14 +135,9 @@ public class Portada extends javax.swing.JInternalFrame {
                             .addComponent(jLabel13)
                             .addComponent(jLabel12)
                             .addComponent(jLabel11))
-                        .addGap(73, 73, 73)))
-                .addGap(471, 471, 471))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jButtonSalir)
-                .addGap(229, 229, 229)
-                .addComponent(jButtonLog)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(73, 73, 73))
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(282, 282, 282))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,11 +170,9 @@ public class Portada extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel13))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSalir)
-                    .addComponent(jButtonLog))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,22 +195,11 @@ public class Portada extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void jButtonLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogActionPerformed
-
-        try {
-            LogIn log = new LogIn();
-            log.setLocationRelativeTo(null);
-            this.setVisible(true);
-            log.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al abrir el panel LogIn");
-        }
-        
-    }//GEN-LAST:event_jButtonLogActionPerformed
-
+    public int getBandera() {
+        return bandera;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonLog;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

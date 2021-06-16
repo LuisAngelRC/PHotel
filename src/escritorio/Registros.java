@@ -45,6 +45,7 @@ public class Registros extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Registros");
 
+        jTableRegistro.setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         jTableRegistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -56,7 +57,7 @@ public class Registros extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Habitación", "Nombre", "Ciudad", "Fecha de entrada", "Fecha de salida", "Tipo de habitación", "Personas", "CuentaNum", "Piso", "cuentaServ", "diasHospedaje"
+                "Habitación", "Nombre", "Ciudad", "Fecha de ingreso", "Fecha de salida", "Habitación tipo", "Personas", "Cuenta base", "Número de piso", "Costo servicios", "Días hospedaje"
             }
         ) {
             Class[] types = new Class [] {
@@ -76,13 +77,16 @@ public class Registros extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableRegistro);
 
-        jButtonCargar.setText("Verificar");
+        jButtonCargar.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonCargar.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonCargar.setText("Verificar número");
         jButtonCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCargarActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel1.setText("Escribe el número de habitación para verificar la información:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -96,11 +100,15 @@ public class Registros extends javax.swing.JInternalFrame {
             .addGap(0, 128, Short.MAX_VALUE)
         );
 
+        jLabel2.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
         jLabel2.setText("Tulum, Quintana Roo, Calle Grulla Sin Numero, Esq. Con Av, Calle Simón Bolivar KM 2.2, 77796 Francisco Uh May, Q.R. ");
 
+        jLabel3.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel3.setText("Escribe el nombre del huésped:");
 
-        jButtonCargar2.setText("Verificar");
+        jButtonCargar2.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonCargar2.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonCargar2.setText("Verificar nombre");
         jButtonCargar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCargar2ActionPerformed(evt);
@@ -112,14 +120,9 @@ public class Registros extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(473, 473, 473))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(219, 219, 219))))
+                .addContainerGap(563, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(473, 473, 473))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -129,19 +132,25 @@ public class Registros extends javax.swing.JInternalFrame {
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(36, 36, 36)
-                                .addComponent(jTextFieldNom))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(48, 48, 48)
-                                .addComponent(jTextFieldNumHab, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(256, 256, 256)
+                                .addComponent(jTextFieldNumHab, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(177, 177, 177)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonCargar)
-                            .addComponent(jButtonCargar2))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                            .addComponent(jButtonCargar2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCargar, jButtonCargar2});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -154,19 +163,17 @@ public class Registros extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldNumHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCargar))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 105, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCargar2)
-                            .addComponent(jLabel3))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCargar2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonCargar, jButtonCargar2});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +181,7 @@ public class Registros extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,14 +221,14 @@ public class Registros extends javax.swing.JInternalFrame {
             modelo.addColumn("Habitación");
             modelo.addColumn("Nombre");
             modelo.addColumn("Ciudad");
-            modelo.addColumn("Fecha Entrada");
-            modelo.addColumn("Fecha Salida");
-            modelo.addColumn("Tipo habitación");
+            modelo.addColumn("Fecha de ingreso");
+            modelo.addColumn("Fecha de salida");
+            modelo.addColumn("Habitación tipo");
             modelo.addColumn("Personas");
-            modelo.addColumn("cuentaNum");
-            modelo.addColumn("Piso");
-            modelo.addColumn("cuentaServ");
-            modelo.addColumn("diasHospedaje");
+            modelo.addColumn("Cuenta base");
+            modelo.addColumn("Número de piso");
+            modelo.addColumn("Costo servicios");
+            modelo.addColumn("Días hospedaje");
 
             while (rs.next()) {
 
@@ -266,15 +273,15 @@ public class Registros extends javax.swing.JInternalFrame {
 
             modelo.addColumn("Nombre");
             modelo.addColumn("Ciudad");
-            modelo.addColumn("Fecha Entrada");
-            modelo.addColumn("Fecha Salida");
-            modelo.addColumn("Tipo habitación");
+            modelo.addColumn("Fecha de ingreso");
+            modelo.addColumn("Fecha de salida");
+            modelo.addColumn("Habitación tipo");
             modelo.addColumn("Personas");
-            modelo.addColumn("cuentaNum");
-            modelo.addColumn("Piso");
+            modelo.addColumn("Cuenta base");
+            modelo.addColumn("Número de piso");
             modelo.addColumn("Habitación");
-            modelo.addColumn("cuentaServ");
-            modelo.addColumn("diasHospedaje");
+            modelo.addColumn("Costo servicios");
+            modelo.addColumn("Días hospedaje");
 
             while (rs.next()) {
 

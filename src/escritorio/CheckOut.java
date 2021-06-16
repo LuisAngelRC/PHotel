@@ -27,7 +27,7 @@ public class CheckOut extends javax.swing.JInternalFrame {
 
     String rutaLogo = "src\\imagenes\\ayaye_grande.png";
     String rutaFirma = "src\\imagenes\\firma.png";
-    Font tipoLetra = new Font(Font.FontFamily.TIMES_ROMAN, 10);//tipoletra
+    Font tipoLetra = new Font(Font.FontFamily.TIMES_ROMAN, 10);
     int ingHotel = 0;
 
     MySqlConn conn = new MySqlConn();
@@ -207,7 +207,6 @@ public class CheckOut extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldBaja = new javax.swing.JTextField();
         jButtonCerrar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/ayaye_logo.png"));
         Image image = icon.getImage();
         jPanel1 = new javax.swing.JPanel(){
@@ -215,15 +214,22 @@ public class CheckOut extends javax.swing.JInternalFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
         };
-        jTextFieldSalida = new javax.swing.JTextField();
         jButtonTicket = new javax.swing.JButton();
+        ImageIcon icon3 = new ImageIcon(getClass().getResource("/imagenes/gracias.png"));
+        Image image3 = icon3.getImage();
+        jPanel2 = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image3,0,0,getWidth(),getHeight(),this);
+            }
+        };
 
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Check-Out");
 
-        jLabel1.setText("Escribe el numero de la habitación para salir:");
+        jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
+        jLabel1.setText("Escribe el número de la habitación para salir:");
 
         jTextFieldBaja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -231,14 +237,14 @@ public class CheckOut extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonCerrar.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonCerrar.setForeground(new java.awt.Color(153, 0, 51));
         jButtonCerrar.setText("Cerrar cuenta");
         jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCerrarActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Fecha de salida:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -251,14 +257,25 @@ public class CheckOut extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jTextFieldSalida.setEditable(false);
-
+        jButtonTicket.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jButtonTicket.setForeground(new java.awt.Color(0, 0, 0));
         jButtonTicket.setText("Generar recibo");
         jButtonTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTicketActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 322, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 167, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,25 +284,23 @@ public class CheckOut extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(43, 43, 43)
-                                .addComponent(jTextFieldSalida))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(273, 273, 273)
                         .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117)
-                        .addComponent(jButtonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(100, 100, 100))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(54, 54, 54)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(273, 273, 273)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,11 +309,9 @@ public class CheckOut extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldBaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -334,34 +347,18 @@ public class CheckOut extends javax.swing.JInternalFrame {
         String fechaS = "";
         String hab = this.jTextFieldBaja.getText().trim();
 
-        try {
+        if (hab.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Numero de habitacion vacio");
+        } else {
+            String query = "SELECT * FROM huespedes WHERE numHab=  " + "'" + fechaS + "'";
+            String query2 = "DELETE FROM huespedes WHERE numHab = " + "'" + hab + "'";
 
-            if (hab.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Numero de habitacion vacio");
+            int j = this.conn.Update(query2);
+            if (j > 0) {
+                JOptionPane.showMessageDialog(this, "Baja realizada");
             } else {
-                String query = "SELECT * FROM huespedes WHERE numHab=  " + "'" + fechaS + "'";
-                String query2 = "DELETE FROM huespedes WHERE numHab = " + "'" + hab + "'";
-
-                int j = this.conn.Update(query2);
-                if (j > 0) {
-                    JOptionPane.showMessageDialog(this, "Baja realizada");
-                } else {
-                    JOptionPane.showMessageDialog(this, "La baja no se pudo realizar");
-                }
-
-                estado = (Statement) this.conn.conn.createStatement();
-                resultados = estado.executeQuery(query);
-
-                while (resultados.next()) {
-
-                    fechaS = resultados.getString("fechaS");
-                    this.jTextFieldSalida.setText(fechaS);
-
-                }
+                JOptionPane.showMessageDialog(this, "La baja no se pudo realizar");
             }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error en la base de datos" + ex);
         }
 
     }//GEN-LAST:event_jButtonCerrarActionPerformed
@@ -383,9 +380,8 @@ public class CheckOut extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonTicket;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldBaja;
-    private javax.swing.JTextField jTextFieldSalida;
     // End of variables declaration//GEN-END:variables
 }
