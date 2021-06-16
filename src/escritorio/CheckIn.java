@@ -310,7 +310,7 @@ public class CheckIn extends javax.swing.JInternalFrame {
         int persona1 = 400, persona2 = 800;
         int costoHunn = 2800, costoItza = 3300, costoKauil = 4600;
 
-        String nombre, ciudad, numPersonas, fechaSalida;
+        String nombre, ciudad, numPersonas;
         String tipoHab;
 
         nombre = this.jTextFieldNombre.getText().trim();
@@ -530,7 +530,7 @@ public class CheckIn extends javax.swing.JInternalFrame {
 
         if (j > 0) {
             System.out.println("Numero de registros afectados por la accion: " + j);
-            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO, su numero de habitacion es: " + numero);
+            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO, su numero de habitacion es: " + numero + " días de hospedaje: " + dias);
 
             try {
                 Registros reg = new Registros();
@@ -558,11 +558,11 @@ public class CheckIn extends javax.swing.JInternalFrame {
         this.jTextFieldNumPersonas.setText("");
         
         if (this.jRadioButton1Per.isSelected()) {
-            this.jRadioButton1Per.setSelected(false);
+            this.buttonGroup1.clearSelection();
         }
         
         if (this.jRadioButton2Per.isSelected()) {
-            this.jRadioButton2Per.setSelected(false);
+            this.buttonGroup1.clearSelection();
         }
         
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
