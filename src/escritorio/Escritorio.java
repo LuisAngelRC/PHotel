@@ -4,7 +4,6 @@ import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
-import java.util.logging.Level;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
