@@ -301,7 +301,7 @@ public class Escritorio extends javax.swing.JFrame {
             try {
                 servicios.setMaximum(true);
             } catch (PropertyVetoException ex) {
-                System.out.println("ERROR: " + ex);
+                JOptionPane.showMessageDialog(this, "ERROR");
             }
             servicios.show();
         } else {
@@ -317,9 +317,8 @@ public class Escritorio extends javax.swing.JFrame {
             this.setVisible(true);
             log.setVisible(true);
 
-            System.out.println("El valor de bandera es: " + banderaLog);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
+            JOptionPane.showMessageDialog(this, "ERROR");
         }
 
     }//GEN-LAST:event_jButton1LoginActionPerformed
@@ -341,14 +340,14 @@ public class Escritorio extends javax.swing.JFrame {
         this.repaint();
 
         Habitaciones hab = new Habitaciones();
-        this.jDesktopPane1.add(hab); //agregamos el JInternalFrameAltas al jDesktopPanel
+        this.jDesktopPane1.add(hab); 
 
         try {
             hab.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "ERROR");
         }
-        hab.show(); //mostrar el jDesktopPanel
+        hab.show(); 
 
     }//GEN-LAST:event_jMenuItemHabitacionesActionPerformed
 
@@ -363,7 +362,7 @@ public class Escritorio extends javax.swing.JFrame {
         try {
             portada.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "ERROR");
         }
         portada.show(); 
         
@@ -391,7 +390,7 @@ public class Escritorio extends javax.swing.JFrame {
         try {
             hot.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "ERROR");
         }
         hot.show(); 
 
@@ -419,7 +418,7 @@ public class Escritorio extends javax.swing.JFrame {
         try {
             alberGym.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "ERROR");
         }
         alberGym.show(); 
 
@@ -447,7 +446,7 @@ public class Escritorio extends javax.swing.JFrame {
         try {
             rest.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "ERROR");
         }
         rest.show(); 
 
